@@ -4,6 +4,7 @@
 
 # LICENSE
 !/LICENSE
+
 # gitignore
 !/.gitignore
 
@@ -57,3 +58,6 @@
 
 # ruby gems
 !/Gemfile
+
+# alacritty
+!/.alacritty.yml

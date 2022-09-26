@@ -39,6 +39,7 @@ create_dotfile_links() {
 }
 
 dotfiles_or_dirs=(
+	.alacritty.yml
 	.zprofile
 	.zshrc
 	.zshenv
@@ -90,4 +91,3 @@ dotfiles_or_dirs=(
 )
 
 create_dotfile_links "${dotfiles_or_dirs[@]}"
-
