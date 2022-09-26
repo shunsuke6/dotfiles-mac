@@ -147,3 +147,9 @@ app list
 
 - [bemenu](https://github.com/Cloudef/bemenu)
 - [editorconfig-checker](https://github.com/editorconfig-checker/editorconfig-checker)
+
+## tmux setup
+
+macos setup tmux-256color.
+
+resource: [bbqtd/macos-tmux-256color.md](https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95)
