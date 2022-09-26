@@ -22,7 +22,7 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim /
 ### git clone
 
 ```bash
-git clone https://github.com/shunsuke6/dotfiles.git .dotfiles
+git clone https://github.com/shunsuke6/dotfiles-mac.git .dotfiles
 ```
 
 ### change gitcongfig
