@@ -1,0 +1,59 @@
+# all ignore by deault
+/*
+/.**
+
+# LICENSE
+!/LICENSE
+# gitignore
+!/.gitignore
+
+# install script
+!/install.sh
+!/app-Install.sh
+
+# vscode
+!/.vscode/
+!/.vscode/**/*
+!/package.json
+!/package-lock.json
+
+# readme
+!/README.md
+
+# github
+!/.github/
+!/.github/**/*
+
+# shell scripts
+!/bin/
+!/bin/**/*
+
+# home dir
+## zsh
+!/.zprofile
+!/.zshrc
+!/.zshenv
+## tmux
+!/.tmux.conf
+## git
+!/.gitconfig
+## asdf
+!/.default-gems
+!/.default-golang-pkgs
+!/.default-npm-packages
+
+# config dir
+!/.config/
+## neovim
+!/.config/nvim/
+!/.config/nvim/init.lua
+!/.config/nvim/lua/
+!/.config/nvim/lua/**/*
+!/.config/nvim/ftplugin/
+!/.config/nvim/ftplugin/**/*
+## ranger
+!/.config/ranger/
+!/.config/ranger/**/*
+
+# ruby gems
+!/Gemfile

@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "bash-language-server": "^3.0.4",
+    "npm-check-updates": "^14.1.1",
+    "prettier": "2.7.1"
+  },
+  "dependencies": {
+    "git-split-diffs": "^0.10.0"
+  }
+}

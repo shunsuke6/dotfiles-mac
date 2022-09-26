@@ -1,0 +1,9 @@
+@vue/cli
+create-react-app
+eslint
+jsonlint
+markdownlint-cli
+neovim
+prettier
+stylelint
+typescript
