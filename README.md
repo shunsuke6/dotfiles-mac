@@ -2,6 +2,9 @@
 
 my dotfiles for command-line interface on arch linux.
 
+## overview
+![](https://user-images.githubusercontent.com/84017923/192322032-133ed1bd-316a-4547-9138-afbb187ec85c.png)
+
 ## how to install
 
 ## depend on
