@@ -3,7 +3,17 @@
 my dotfiles for command-line interface on arch linux.
 
 ## overview
+
 ![](https://user-images.githubusercontent.com/84017923/192322032-133ed1bd-316a-4547-9138-afbb187ec85c.png)
+
+### contents
+
+- neovim plugins(lua)
+- tmux
+- zsh
+- zinit
+- Alacritty
+- asdf
 
 ## how to install
 
@@ -13,6 +23,7 @@ my dotfiles for command-line interface on arch linux.
 - curl
 - wget
 - homebrew
+- neovim
 
 ### packer install
 
@@ -97,7 +108,7 @@ vi +packersync
 If PackerSync UI freezes, run `ulimit -S -n 200048` and try again.
 
 If you still can't do it, try
-[thisl](https://github.com/akinsho/dotfiles/blob/7e6f90b79a4b64589616daac50674b8fe49d5d6a/neorg/macos.norg)
+[this](https://github.com/akinsho/dotfiles/blob/7e6f90b79a4b64589616daac50674b8fe49d5d6a/neorg/macos.norg)
 maxfiles setup.
 
 If that's still no good, look at [Issue#202](https://github.com/wbthomason/packer.nvim/issues/202)
