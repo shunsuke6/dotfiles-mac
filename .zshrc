@@ -209,6 +209,9 @@ if [[ -z "$TMUX" && ! -z "$PS1" && $TERM_PROGRAM != "vscode" ]]; then
     fi
 fi
 
+
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
 export FLUTTER_ROOT="$(asdf where flutter)"
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
