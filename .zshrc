@@ -209,14 +209,20 @@ if [[ -z "$TMUX" && ! -z "$PS1" && $TERM_PROGRAM != "vscode" ]]; then
     fi
 fi
 
-
+########################################
+# local run command
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
+########################################
+
+########################################
+# PATH
 export FLUTTER_ROOT="$(asdf where flutter)"
-export DENO_INSTALL="$HOME/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-export GPG_TTY=$(tty)
-# llvm
+## llvm
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
+########################################
+#GPG
+export GPG_TTY=$(tty)
