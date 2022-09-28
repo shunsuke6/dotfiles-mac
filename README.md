@@ -2,6 +2,8 @@
 
 my dotfiles for command-line interface on Mac Book.
 
+I use Alacritty.
+
 ## overview
 
 ![](https://user-images.githubusercontent.com/84017923/192322032-133ed1bd-316a-4547-9138-afbb187ec85c.png)
@@ -76,47 +78,39 @@ make dotfiles directory
 
 Install the required applications manually or automatically.
 
+If you are not using zsh, run `chsh -s /usr/bin/zsh`
+
 For automatic installation, run `app-install.sh`.
 
 For a list of applications, look [here](#app-install).
 
-Install zsh plugins and some packages from github or script.
+---
 
-If you are not using zsh, run `chsh -s /usr/bin/zsh`
+Install zsh plugins and some packages from github or script.
 
 ```bash
 exec zsh
 ```
 
+install asdf tools, dotnet tools, pyenv, poetry, ghcup, rustup,
+
 ```bash
 ~/bin/update-devtools.sh
 ```
-
-install asdf tools, dotnet tools, pyenv, poetry, ghcup, rustup,
 
 install neovim plugins and create helptags, and install lsp.
 
 I suggest you adjust linter and formatter in`.config/nvim/lua/plagins/null-ls.lua`.
 
 ```bash
-vi +packersync
+vi +PackerSync
    :helptags all
    :lspinstallinfo
    :checkhealth
 ```
 
-If PackerSync UI freezes, run `ulimit -S -n 200048` and try again.
-
-If you still can't do it, try
-[this](https://github.com/akinsho/dotfiles/blob/7e6f90b79a4b64589616daac50674b8fe49d5d6a/neorg/macos.norg)
-maxfiles setup.
-
-If that's still no good, look at [Issue#202](https://github.com/wbthomason/packer.nvim/issues/202)
-
-resource:
-
-- [https://github.com/wbthomason/packer.nvim/pull/889](https://github.com/wbthomason/packer.nvim/pull/889)
-- [https://github.com/akinsho/dotfiles/blob/7e6f90b79a4b64589616daac50674b8fe49d5d6a/neorg/macos.norg](https://github.com/akinsho/dotfiles/blob/7e6f90b79a4b64589616daac50674b8fe49d5d6a/neorg/macos.norg)
+If PackerSync UI freezes,look
+[this wiki](https://github.com/shunsuke6/dotfiles-mac/wiki/Packer-freezes-on-Mac-OS)
 
 ## app-Install
 
