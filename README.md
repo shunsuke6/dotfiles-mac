@@ -1,6 +1,6 @@
 # dotfiles
 
-my dotfiles for command-line interface on arch linux.
+my dotfiles for command-line interface on Mac Book.
 
 ## overview
 
