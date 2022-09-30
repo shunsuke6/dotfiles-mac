@@ -225,3 +225,6 @@ export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 ########################################
 #GPG
 export GPG_TTY=$(tty)
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
