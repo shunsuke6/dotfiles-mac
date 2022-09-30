@@ -189,6 +189,8 @@ alias diff='colordiff -u'
 alias grep='grep --color=auto'
 alias vi='nvim'
 alias vim='nvim'
+alias gd='git diff | git-split-diffs --color | less -RFX'
+
 ########################################
 # tmux
 if [[ -z "$TMUX" && ! -z "$PS1" && $TERM_PROGRAM != "vscode" ]]; then
