@@ -79,9 +79,9 @@ fi
 [[ ! -f $HOME/.cargo/env ]] || source "$HOME/.cargo/env"
 
 # dotnet
-[[ ! -f $HOME/.asdf/plugins/dotnet-core/set-dotnet-home.zsh ]] || \
-    source "$HOME/.asdf/plugins/dotnet-core/set-dotnet-home.zsh"
-export PATH="$HOME/.dotnet/tools:$PATH"
+# [[ ! -f $HOME/.asdf/plugins/dotnet-core/set-dotnet-home.zsh ]] || \
+#     source "$HOME/.asdf/plugins/dotnet-core/set-dotnet-home.zsh"
+# export PATH="$HOME/.dotnet/tools:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -135,14 +135,14 @@ fi
 fpath+=~/.zfunc
 
 # dotnet-core
-_dotnet_zsh_complete()
-{
-    local completions=("$(dotnet complete "$words")")
-    reply=( "${(ps:\n:)completions}" )
-}
-if command -v dotnet 1>/dev/null 2>&1; then
-    compctl -K _dotnet_zsh_complete dotnet
-fi
+#_dotnet_zsh_complete()
+# {
+#     local completions=("$(dotnet complete "$words")")
+#     reply=( "${(ps:\n:)completions}" )
+# }
+# if command -v dotnet 1>/dev/null 2>&1; then
+#     compctl -K _dotnet_zsh_complete dotnet
+# fi
 
 # load completion
 autoload -Uz compinit
@@ -189,7 +189,6 @@ alias diff='colordiff -u'
 alias grep='grep --color=auto'
 alias vi='nvim'
 alias vim='nvim'
-
 ########################################
 # tmux
 if [[ -z "$TMUX" && ! -z "$PS1" && $TERM_PROGRAM != "vscode" ]]; then
