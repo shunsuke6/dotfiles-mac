@@ -1,5 +1,7 @@
 # dotfiles
 
+[[日本語](https://github.com/shunsuke6/dotfiles-mac/wiki/README-%E6%97%A5%E6%9C%AC%E8%AA%9E)]
+
 my dotfiles for command-line interface on Mac Book.
 
 I use Alacritty.
