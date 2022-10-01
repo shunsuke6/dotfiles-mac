@@ -4,6 +4,11 @@ my dotfiles for command-line interface on Mac Book.
 
 I use Alacritty.
 
+We have just migrated and have it in working order,
+but there may be some things that do not work well that are problematic.
+
+We will fix them as we go along.
+
 ## overview
 
 ![](https://user-images.githubusercontent.com/84017923/192322032-133ed1bd-316a-4547-9138-afbb187ec85c.png)
