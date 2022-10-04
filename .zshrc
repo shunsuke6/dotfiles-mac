@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 #!/usr/bin/zsh
 
 #######################################
@@ -61,13 +63,15 @@ if [[ ! -d $HOME/.asdf ]]; then
 fi
 
 # poetry
-if [[ ! -d $HOME/.poetry ]]; then
+local pypoetry="$HOME/Library/Application Support/pypoetry"
+if [[ ! -d $pypoetry ]]; then
+
     print -P "%F{33} %F{220}Installing %F{33}poetry%F{220} python environment manager…%f"
-    curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python && \
+        curl -sSL https://install.python-poetry.org | python3 -. && \
         print -P "%F{33} %F{34}Installation successful.%f%b" || \
         print -P "%F{160} Installation failed.%f%b"
 fi
-export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="~/Library/Application Support/pypoetry/venv/bin/poetry:$PATH"
 
 # rustup
 if [[ ! -d $HOME/.cargo ]]; then
