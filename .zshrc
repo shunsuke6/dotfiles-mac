@@ -132,7 +132,7 @@ if [[ ! -f $HOME/.zfunc/_rustup ]]; then
 fi
 if [[ ! -f $HOME/.zfunc/_cargo ]]; then
     print -P "%F{33} %F{220}Installing %F{33}cargo%F{220} completions…%f"
-    ln -sf ~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/zsh/site-functions/_cargo ~/.zfunc/_cargo && \
+    ln -sf ~/.rustup/toolchains/stable-aarch64-apple-darwin/share/zsh/site-functions/_cargo ~/.zfunc/_cargo && \
         print -P "%F{33} %F{34}Installation successful.%f%b" || \
         print -P "%F{160} Installation failed.%f%b"
 fi
