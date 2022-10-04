@@ -1,6 +1,3 @@
 [user]
     email = sawabes@ns.aucnet.co.jp
     name = shunsuke6
-  
-[core]
-	pager = git-split-diffs --color | less -RFX
