@@ -12,12 +12,13 @@ install(){
     local brew_list=("${@}")
 
     for app in "${brew_list[@]}"; do
-        if ! command -v $app 1>/dev/null 2>&1; then            print -P "%F{33} %F{220}Installing %F{33}%F{220}$app …%f"
+        if ! command -v $app 1>/dev/null 2>&1; then
+            print -P "%F{33} %F{220}Installing %F{33}%F{220}$app …%f"
             brew install $app && \
             print -P "%F{33} %F{34}Installation successful.%f%b" || \
             print -P "%F{160} The clone has failed.%f"
         fi
-    done 
+    done
 
     if command -v luarocks 1>/dev/null 2>&1; then
         if ! command -v luacheck 1>/dev/null 2>&1; then
