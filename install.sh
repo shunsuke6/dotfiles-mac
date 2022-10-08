@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # nounset, errexit
 set -ue
@@ -59,6 +59,8 @@ dotfiles_or_dirs=(
 	bin/update-asdf.sh
 	bin/update-asdf-self.sh
 	bin/update-asdf-globals.sh
+	bin/update-asdf-gleam.sh
+	bin/update-asdf-erlang.sh
 	bin/update-asdf-neovim.sh
 	bin/update-asdf-ruby.sh
 	bin/update-asdf-golangci-lint.sh
