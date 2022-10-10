@@ -54,42 +54,40 @@ dotfiles_or_dirs=(
 	.config/nvim/ftplugin
 	.config/neomutt
 	.config/ranger
-	.bin/rclone_mount.sh
-	bin/update-devtools.sh
-	bin/update-asdf.sh
-	bin/update-asdf-self.sh
-	bin/update-asdf-globals.sh
-	bin/update-asdf-gleam.sh
-	bin/update-asdf-erlang.sh
+	bin/update-asdf-dart.sh
+	bin/update-asdf-deno.sh
+	bin/update-asdf-dotnet-core.sh
 	bin/update-asdf-elixir.sh
-	bin/update-asdf-neovim.sh
-	bin/update-asdf-ruby.sh
+	bin/update-asdf-erlang.sh
+	bin/update-asdf-flutter.sh
+	bin/update-asdf-gleam.sh
+	bin/update-asdf-globals.sh
+	bin/update-asdf-golang.sh
 	bin/update-asdf-golangci-lint.sh
 	bin/update-asdf-hadolint.sh
 	bin/update-asdf-ktlint.sh
-	bin/update-asdf-flutter.sh
 	bin/update-asdf-locals.sh
+	bin/update-asdf-neovim.sh
 	bin/update-asdf-nodejs.sh
-	bin/update-asdf-deno.sh
-	bin/update-asdf-golang.sh
-	bin/update-asdf-dotnet-core.sh
-	bin/update-asdf-dart.sh
+	bin/update-asdf-ruby.sh
+	bin/update-asdf-self.sh
+	bin/update-asdf.sh
+	bin/update-devtools.sh
 	bin/update-dotnet-core-tools.sh
-	bin/update-pyenv.sh
-	bin/update-poetry.sh
 	bin/update-ghcup.sh
-	bin/update-rustup.sh
-	bin/update-vscode.sh
-	bin/update-vscode-node-debug2.sh
-	bin/update-vscode-chrome-debug.sh
-	bin/update-vscode-firefox-debug.sh
-	bin/update-vscode-php-debug.sh
 	bin/update-java-debug.sh
-	bin/update-vscode-java-test.sh
 	bin/update-kotlin-debug-adapter.sh
-	bin/update-lsp.sh
 	bin/update-lsp-jdtls.sh
 	bin/update-lsp-lombok.sh
+	bin/update-lsp.sh
+	bin/update-poetry.sh
+	bin/update-rustup.sh
+	bin/update-vscode-chrome-debug.sh
+	bin/update-vscode-firefox-debug.sh
+	bin/update-vscode-java-test.sh
+	bin/update-vscode-node-debug2.sh
+	bin/update-vscode-php-debug.sh
+	bin/update-vscode.sh
 	Gemfile
 )
 
