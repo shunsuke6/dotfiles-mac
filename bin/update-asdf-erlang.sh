@@ -10,7 +10,7 @@ fi
 
 PLUGIN="$(asdf plugin-list | grep 'erlang' 2>/dev/null)"
 if [[ -z "$PLUGIN" ]]; then
-	if asdf plugin-add gleaerlangm; then
+	if asdf plugin-add erlan; then
 		asdf global erlang system
 		printf "${ESC}[1;32m%s${ESC}[m\n" '***** asdf erlang plugin installed (and set: asdf global golang system). *****'
 	else
