@@ -61,6 +61,7 @@ dotfiles_or_dirs=(
 	bin/update-asdf-globals.sh
 	bin/update-asdf-gleam.sh
 	bin/update-asdf-erlang.sh
+	bin/update-asdf-elixir.sh
 	bin/update-asdf-neovim.sh
 	bin/update-asdf-ruby.sh
 	bin/update-asdf-golangci-lint.sh
