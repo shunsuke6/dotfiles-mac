@@ -9,7 +9,7 @@ m.setup = function(use)
         },
     })
     use({
-        "SmiteshP/nvim-gps",
+        "SmiteshP/nvim-navic",
         requires = {
             "nvim-treesitter/nvim-treesitter",
         },
@@ -20,7 +20,7 @@ m.setup = function(use)
 end
 
 m.setup_lualine = function()
-    local gps = require("nvim-gps")
+    local navic = require("nvim-navic")
     require("lualine").setup({
         options = {
             theme = "nightfox",
@@ -36,7 +36,7 @@ m.setup_lualine = function()
             },
             lualine_c = {
                 "filename",
-                { gps.get_location, cond = gps.is_available },
+                { navic.get_location, cond = navic.is_available },
             },
             lualine_x = {
                 "encoding",
@@ -54,7 +54,7 @@ m.setup_lualine = function()
 end
 
 m.setup_gps = function()
-    require("nvim-gps").setup()
+    require("nvim-navic").setup()
 end
 
 return m
