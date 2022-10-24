@@ -32,6 +32,7 @@ m.setup = function(use)
     if not vim.g.vscode then
         m.setup_neoclip()
         m.setup_autopairs()
+        m.setup_hlslens()
     end
 end
 
@@ -53,6 +54,10 @@ m.setup_comment = function()
         end,
         post_hook = nil,
     })
+end
+
+m.setup_hlslens = function()
+    require("hlslens").setup()
 end
 
 m.setup_autopairs = function()
