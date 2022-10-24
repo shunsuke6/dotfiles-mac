@@ -3,7 +3,7 @@ local m = {}
 m.setup = function(use)
     use({
         "akinsho/toggleterm.nvim",
-        tag = "*",
+        tag = "v2.*",
     })
 
     m.setup_toggleterm()
