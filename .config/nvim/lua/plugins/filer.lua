@@ -85,7 +85,6 @@ m.setup_neotree = function()
                 ["S"] = "open_split",
                 ["s"] = "open_vsplit",
                 ["t"] = "open_tabnew",
-                ["w"] = "open_with_window_picker",
                 ["C"] = "close_node",
                 ["a"] = {
                     "add",
