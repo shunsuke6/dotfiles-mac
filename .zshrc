@@ -1,6 +1,7 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 #!/usr/bin/zsh
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
 #######################################
 # Plugins
@@ -82,11 +83,6 @@ if [[ ! -d $HOME/.cargo ]]; then
 fi
 [[ ! -f $HOME/.cargo/env ]] || source "$HOME/.cargo/env"
 
-# dotnet
-# [[ ! -f $HOME/.asdf/plugins/dotnet-core/set-dotnet-home.zsh ]] || \
-#     source "$HOME/.asdf/plugins/dotnet-core/set-dotnet-home.zsh"
-# export PATH="$HOME/.dotnet/tools:$PATH"
-
 export PATH="$HOME/.local/bin:$PATH"
 
 # user
@@ -137,16 +133,6 @@ if [[ ! -f $HOME/.zfunc/_cargo ]]; then
         print -P "%F{160} Installation failed.%f%b"
 fi
 fpath+=~/.zfunc
-
-# dotnet-core
-#_dotnet_zsh_complete()
-# {
-#     local completions=("$(dotnet complete "$words")")
-#     reply=( "${(ps:\n:)completions}" )
-# }
-# if command -v dotnet 1>/dev/null 2>&1; then
-#     compctl -K _dotnet_zsh_complete dotnet
-# fi
 
 # load completion
 autoload -Uz compinit
@@ -223,6 +209,7 @@ fi
 ########################################
 # PATH
 export FLUTTER_ROOT="$(asdf where flutter)"
+
 ## llvm
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
@@ -231,6 +218,3 @@ export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 ########################################
 #GPG
 export GPG_TTY=$(tty)
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
