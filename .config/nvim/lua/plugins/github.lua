@@ -1,66 +1,6 @@
 local m = {}
 
 m.setup = function(use)
-    -- :Octo <Object> <Action> [Argument]
-    -- Object		Action				Arguments
-    -- issue		close				Close the current issue
-    -- 			reopen				Reopen the current issue
-    -- 			create [repo]			Creates a new issue in the current or specified repo
-    -- 			edit [repo]			Edit issue <number> in current or specified repo
-    -- 			list [repo] [key=value] (1)	List all issues satisfying given filter
-    -- 			search				Live issue search
-    -- 			reload				Reload issue. Same as doing e!
-    -- 			browser				Open current issue in the browser
-    -- 			url				Copies the URL of the current issue to the system clipboard
-    -- pr		list [repo] [key=value] (2)	List all PRs satisfying given filter
-    -- 			search				Live issue search
-    -- 			edit [repo]			Edit PR <number> in current or specified repo
-    -- 			reopen				Reopen the current PR
-    -- 			close				Close the current PR
-    -- 			checkout			Checkout PR
-    -- 			commits				List all PR commits
-    -- 			changes				Show all PR changes (diff hunks)
-    -- 			diff				Show PR diff
-    -- 			merge [commit|rebase|squash] [delete]	Merge current PR using the specified method
-    -- 			ready				Mark a draft PR as ready for review
-    -- 			checks				Show the status of all checks run on the PR
-    -- 			reload				Reload PR. Same as doing e!
-    -- 			browser				Open current PR in the browser
-    -- 			url				Copies the URL of the current PR to the system clipboard
-    -- repo		list (3)			List repos user owns, contributes or belong to
-    -- 			fork				Fork repo
-    -- 			browser				Open current repo in the browser
-    -- 			url				Copies the URL of the current repo to the system clipboard
-    -- gist		list [repo] [key=value] (4)	List user gists
-    -- comment		add				Add a new comment
-    -- 			delete				Delete a comment
-    -- thread		resolve				Mark a review thread as resolved
-    -- 			unresolve			Mark a review thread as unresolved
-    -- label		add [label]			Add a label from available label menu
-    -- 			remove [label]			Remove a label
-    -- 			create [label]			Create a new label
-    -- assignees	add [login]			Assign a user
-    -- 			remove [login]			Unassign a user
-    -- reviewer		add [login]			Assign a PR reviewer
-    -- reaction		thumbs_up | +1			Add +1 reaction
-    -- 			thumbs_down | -1		Add -1 reaction
-    -- 			eyes				Add eyes reaction
-    -- 			laugh				Add smile reaction
-    -- 			confused			Add confused reaction
-    -- 			rocket				Add rocket reaction
-    -- 			heart				Add heart reaction
-    -- 			hooray | party | tada		Add tada reaction
-    -- card		add				Assign issue/PR to a project new card
-    -- 			remove				Delete project card
-    -- 			move				Move project card to different project/column
-    -- review		start				Start a new review
-    -- 			submit				Submit the review
-    -- 			resume				Edit a pending review for current PR
-    -- 			discard				Deletes a pending review for current PR if any
-    -- 			comments			View pending review comments
-    -- 			commit				Pick a specific commit to review
-    -- actions						Lists all available Octo actions
-    -- search						Search GitHub for issues and PRs matching the query
     use({
         "pwntester/octo.nvim",
         requires = {
