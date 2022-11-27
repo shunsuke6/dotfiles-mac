@@ -7,3 +7,6 @@ neovim
 prettier
 stylelint
 typescript
+typesync
+ts-node
+yarn
