@@ -182,7 +182,7 @@ m.setup_null_ls = function()
             null_ls.builtins.formatting.gofmt,
 
             -- for java
-            -- null_ls.builtins.formatting.google_java_format,
+            null_ls.builtins.formatting.google_java_format,
 
             -- for python
             -- null_ls.builtins.formatting.isort.with({
