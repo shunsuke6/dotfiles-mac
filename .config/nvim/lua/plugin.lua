@@ -41,4 +41,5 @@ require("packer").startup(function(use)
         require("plugins.log").setup(use)
         require("plugins.null-ls").setup(use)
     end
+    require("plugins.toys").setup(use)
 end)
