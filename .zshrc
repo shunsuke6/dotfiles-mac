@@ -219,5 +219,11 @@ export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 #GPG
 export GPG_TTY=$(tty)
 
+########################################
+# bindkey
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+bindkey "[Z" reverse-menu-complete
+
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
