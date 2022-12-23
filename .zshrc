@@ -1,7 +1,6 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 #!/usr/bin/zsh
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
 #######################################
 # Plugins
@@ -180,6 +179,7 @@ alias grep='grep --color=auto'
 alias vi='nvim'
 alias vim='nvim'
 alias gd='git diff | git-split-diffs --color | less -RFX'
+alias lg='lazygit'
 
 ########################################
 # tmux
@@ -218,3 +218,6 @@ export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 ########################################
 #GPG
 export GPG_TTY=$(tty)
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
