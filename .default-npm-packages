@@ -2,7 +2,7 @@
 create-react-app
 eslint
 jsonlint
-markdownlint-cli
+markdownlint
 neovim
 prettier
 stylelint
