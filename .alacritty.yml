@@ -71,7 +71,7 @@ font:
     style: Bold Itali
 
 window:
-  opacity: 0.8
+  opacity: 0.95
 
 key_bindings:
   - { key: K, mods: Command, mode: ~Vi|~Search, chars: "\x0c" }
