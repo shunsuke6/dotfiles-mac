@@ -179,7 +179,6 @@ alias grep='grep --color=auto'
 alias vi='nvim'
 alias vim='nvim'
 alias gd='git diff | git-split-diffs --color | less -RFX'
-alias lg='lazygit'
 
 ########################################
 # tmux
