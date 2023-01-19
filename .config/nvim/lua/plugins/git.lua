@@ -82,12 +82,14 @@ m.setup_diffview = function()
         },
         file_history_panel = {
             log_options = {
-                single_file = {
-                    max_count = 512,
-                    follow = true,
-                },
-                multi_file = {
-                    max_count = 128,
+                git = {
+                    single_file = {
+                        max_count = 512,
+                        follow = true,
+                    },
+                    multi_file = {
+                        max_count = 128,
+                    },
                 },
             },
         },
