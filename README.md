@@ -136,7 +136,6 @@ app list
 - composer
 - colordiff
 - cppcheck
-- deno
 - fd
 - fzf
 - gawk
