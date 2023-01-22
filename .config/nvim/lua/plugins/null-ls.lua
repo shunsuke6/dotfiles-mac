@@ -39,26 +39,6 @@ local node_modules_path = "node_modules/.bin"
 local python_venv_path = ".venv/bin"
 local sqlfluff_extra_args = { "--dialect", "postgres" }
 
-local get_prettier_disabled_filetypes = function()
-    local utils = require("null-ls.utils").make_conditional_utils()
-    local has_deno_settings = utils.root_has_file({
-        "deno.json",
-        "deno.jsonc",
-    })
-    if has_deno_settings then
-        return {
-            "javascript",
-            "javascriptreact",
-            "json",
-            "jsonc",
-            "markdown",
-            "typescript",
-            "typescriptreact",
-        }
-    end
-    return {}
-end
-
 local on_attach = function(client, bufnr)
     local null_ls_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
     if client.supports_method("textDocument/formatting") then
@@ -87,8 +67,7 @@ m.setup_null_ls = function()
             }),
 
             -- for bash
-            -- be used by bashls
-            -- null_ls.builtins.code_actions.shellcheck,
+            null_ls.builtins.code_actions.shellcheck,
 
             -- diagnostics
 
@@ -149,7 +128,7 @@ m.setup_null_ls = function()
 
             -- for bash
             -- be used by bashls
-            -- null_ls.builtins.diagnostics.shellcheck,
+            null_ls.builtins.diagnostics.shellcheck,
 
             -- for css
             -- NOTE: If switch to the lsp version eslint, should also switch to the lsp version stylelint.
@@ -221,7 +200,7 @@ m.setup_null_ls = function()
             -- null_ls.builtins.formatting.phpcsfixer,
 
             -- for html/css/sass/javascript/typescript/react/vue/json/yaml/markdown/graphql
-            null_ls.builtins.formatting.deno_fmt,
+            --null_ls.builtins.formatting.deno_fmt,
 
             null_ls.builtins.formatting.prettier.with({
                 prefer_local = "node_modules/.bin",
