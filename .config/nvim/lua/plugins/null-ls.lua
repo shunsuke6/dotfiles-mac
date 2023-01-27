@@ -215,7 +215,9 @@ m.setup_null_ls = function()
             -- null_ls.builtins.formatting.rustfmt,
 
             -- for bash
-            null_ls.builtins.formatting.shfmt,
+            null_ls.builtins.formatting.shfmt.with({
+                extra_args = { "-s", "false" },
+            }),
 
             -- for sql
             null_ls.builtins.formatting.sqlfluff.with({
