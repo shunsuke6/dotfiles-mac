@@ -93,6 +93,7 @@ m.setup_null_ls = function()
                 prefer_local = ".venv/bin",
             }),
 
+            --null_ls.builtins.diagnostics.pyproject_flake8,
             -- for go
             -- use lsp version
             null_ls.builtins.diagnostics.golangci_lint,
@@ -212,7 +213,7 @@ m.setup_null_ls = function()
 
             -- for rust
             -- be used by rust_analyzer
-            -- null_ls.builtins.formatting.rustfmt,
+            null_ls.builtins.formatting.rustfmt,
 
             -- for bash
             null_ls.builtins.formatting.shfmt.with({
