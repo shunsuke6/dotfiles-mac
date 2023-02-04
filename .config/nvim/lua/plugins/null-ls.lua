@@ -250,6 +250,10 @@ m.setup_null_ls = function()
             }),
 
             null_ls.builtins.formatting.trim_whitespace,
+
+            -- for elixir
+            null_ls.builtins.diagnostics.credo,
+            null_ls.builtins.formatting.mix,
         },
     })
 end
