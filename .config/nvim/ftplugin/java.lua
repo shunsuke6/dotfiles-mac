@@ -1,15 +1,14 @@
-local home_path = require("os").getenv("HOME")
-
-local jdtls_path = home_path .. "/dev/lsp/jdtls"
+local mason_registry = require("mason-registry")
+local function get_install_path(package_name)
+    return mason_registry.get_package(package_name):get_install_path()
+end
+local jdtls_path = get_install_path("jdtls")
 local jdtls_jar_path = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
-local jdtls_config_path = jdtls_path .. "/config_linux"
-local lombok_path = home_path .. "/dev/lsp/lombok/lombok.jar"
-
-local vsext_path = home_path .. "/dev/vscode"
-local java_debug_paths = vim.fn.glob(
-    vsext_path .. "/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
-)
-local java_test_paths = vim.fn.glob(vsext_path .. "/vscode-java-test/server/*.jar")
+local jdtls_config_path = jdtls_path .. "/config_mac"
+local lombok_path = jdtls_path .. "/lombok.jar"
+local java_debug_paths =
+    vim.fn.glob(get_install_path("java-debug-adapter") .. "/extension/server/com.microsoft.java.debug.plugin-*.jar")
+local java_test_paths = vim.fn.glob(get_install_path("java-test") .. "/extension/server/*.jar")
 local bundles = {
     java_debug_paths,
 }

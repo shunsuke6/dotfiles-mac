@@ -86,6 +86,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # user
 export PATH="$HOME/bin:$PATH"
+export JAVA_WORKSPACE="$HOME/.workspace"
 
 typeset -U PATH
 
