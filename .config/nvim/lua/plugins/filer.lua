@@ -121,7 +121,7 @@ m.setup_neotree = function()
                 },
                 -- remains hidden even if visible is toggled to true
                 never_show = {
-                    --".DS_Store",
+                    ".DS_Store",
                     --"thumbs.db"
                 },
             },
