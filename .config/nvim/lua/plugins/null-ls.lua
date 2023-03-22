@@ -39,6 +39,12 @@ local node_modules_path = "node_modules/.bin"
 local python_venv_path = ".venv/bin"
 local sqlfluff_extra_args = { "--dialect", "postgres" }
 
+local has_deno_configuration = function(utils)
+    return utils.root_has_file({
+        "deno.json",
+        "deno.jsonc",
+    })
+end
 local on_attach = function(client, bufnr)
     local null_ls_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
     if client.supports_method("textDocument/formatting") then
@@ -53,6 +59,21 @@ local on_attach = function(client, bufnr)
     end
 end
 
+local get_filetypes_disable_prettier = function()
+    local utils = require("null-ls.utils").make_conditional_utils()
+    if has_deno_configuration(utils) then
+        return {
+            "javascript",
+            "javascriptreact",
+            "json",
+            "jsonc",
+            "markdown",
+            "typescript",
+            "typescriptreact",
+        }
+    end
+    return {}
+end
 m.setup_null_ls = function()
     local null_ls = require("null-ls")
     null_ls.setup({
@@ -115,9 +136,9 @@ m.setup_null_ls = function()
             }),
 
             -- for markdown
-            null_ls.builtins.diagnostics.markdownlint.with({
-                prefer_local = node_modules_path,
-            }),
+            -- null_ls.builtins.diagnostics.markdownlint.with({
+            --     prefer_local = node_modules_path,
+            -- }),
 
             -- for php
             -- null_ls.builtins.diagnostics.php,
@@ -200,10 +221,13 @@ m.setup_null_ls = function()
             -- null_ls.builtins.formatting.phpcsfixer,
 
             -- for html/css/sass/javascript/typescript/react/vue/json/yaml/markdown/graphql
-            --null_ls.builtins.formatting.deno_fmt,
+            null_ls.builtins.formatting.deno_fmt.with({
+                condition = has_deno_configuration,
+            }),
 
             null_ls.builtins.formatting.prettier.with({
                 prefer_local = "node_modules/.bin",
+                disabled_filetypes = get_filetypes_disable_prettier(),
             }),
 
             -- for ruby
