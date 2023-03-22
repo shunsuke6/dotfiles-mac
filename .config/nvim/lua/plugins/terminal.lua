@@ -13,6 +13,6 @@ m.setup_toggleterm = function()
     require("toggleterm").setup()
 end
 
-vim.keymap.set("n", "<M-t>", "<cmd>ToggleTerm<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<C-t>t", "<cmd>ToggleTerm<CR>", { silent = true, noremap = true })
 
 return m
