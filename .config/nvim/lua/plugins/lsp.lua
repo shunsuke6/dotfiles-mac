@@ -139,6 +139,28 @@ local function setup_lsp_sumneko_lua(serverconfig, on_attach, capabilities)
         capabilities = capabilities,
     })
 end
+local function setup_lsp_tsserver(serverconfig, on_attach, capabilities)
+    local lspconfig = require("lspconfig")
+    serverconfig.setup({
+        -- Exclude ".git"
+        root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
+        on_attach = on_attach,
+        capabilities = capabilities,
+    })
+end
+local function setup_lsp_denols(serverconfig, on_attach, capabilities)
+    local lspconfig = require("lspconfig")
+    serverconfig.setup({
+        init_options = {
+            enable = true,
+            lint = true,
+            unstable = false,
+        },
+        root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+        on_attach = on_attach,
+        capabilities = capabilities,
+    })
+end
 
 local function setup_lsp_any(serverconfig, on_attach, capabilities)
     serverconfig.setup({
@@ -164,6 +186,8 @@ m.setup_lsp = function()
             elseif server_name == "rust_analyzer" then
                 -- rust
                 setup_lsp_rust_analyzer(serverconfig, on_attach, capabilities)
+            elseif server_name == "jdtls" then
+                -- jdtls is used by nvim-jdtls
             elseif server_name == "hls" then
                 -- haskell
                 setup_lsp_hls(serverconfig, on_attach, capabilities)
@@ -176,6 +200,12 @@ m.setup_lsp = function()
             elseif server_name == "sumneko_lua" then
                 -- lua
                 setup_lsp_sumneko_lua(serverconfig, on_attach, capabilities)
+            elseif server_name == "tsserver" then
+                -- javascript/typescript/react
+                setup_lsp_tsserver(serverconfig, on_attach, capabilities)
+            elseif server_name == "denols" then
+                -- javascript/typescript/react
+                setup_lsp_denols(serverconfig, on_attach, capabilities)
             else
                 setup_lsp_any(serverconfig, on_attach, capabilities)
             end
