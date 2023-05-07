@@ -25,8 +25,6 @@ m.setup = function(use)
 end
 
 m.on_attach = function(client, bufnr)
-    require("illuminate").on_attach(client)
-
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
@@ -139,6 +137,15 @@ local function setup_lsp_sumneko_lua(serverconfig, on_attach, capabilities)
         capabilities = capabilities,
     })
 end
+local function setup_lsp_omnisharp(serverconfig, on_attach, capabilities)
+    serverconfig.setup({
+        cmd = { "omnisharp" },
+        enable_editorconfig_support = true,
+        enable_roslyn_analyzers = true,
+        on_attach = on_attach,
+        --capabilities = capabilities,
+    })
+end
 local function setup_lsp_tsserver(serverconfig, on_attach, capabilities)
     local lspconfig = require("lspconfig")
     serverconfig.setup({
@@ -206,6 +213,9 @@ m.setup_lsp = function()
             elseif server_name == "denols" then
                 -- javascript/typescript/react
                 setup_lsp_denols(serverconfig, on_attach, capabilities)
+            elseif server_name == "omnisharp" then
+                -- csharp
+                setup_lsp_omnisharp(serverconfig, on_attach, capabilities)
             else
                 setup_lsp_any(serverconfig, on_attach, capabilities)
             end
@@ -274,15 +284,27 @@ m.setup_trouble = function()
 end
 
 m.setup_fidget = function()
-    require("fidget").setup({
-        task = function(task_name, message, percentage)
-            return string.format(
-                "%s%s [%s]",
-                message,
-                percentage and string.format(" (%s%%)", percentage) or "",
-                task_name
-            )
-        end,
+    require("fidget").setup()
+end
+
+m.setup_illuminate = function()
+    require("illuminate").configure({
+        providers = {
+            "lsp",
+            "treesitter",
+            "regex",
+        },
+        delay = 500,
+        filetypes_denylist = {
+            "dirvish",
+            "fugitive",
+        },
+        filetypes_allowlist = {},
+        modes_denylist = {},
+        modes_allowlist = {},
+        providers_regex_syntax_denylist = {},
+        providers_regex_syntax_allowlist = {},
+        under_cursor = true,
     })
 end
 

@@ -82,6 +82,10 @@ if [[ ! -d $HOME/.cargo ]]; then
 fi
 [[ ! -f $HOME/.cargo/env ]] || source "$HOME/.cargo/env"
 
+[[ ! -f $HOME/.asdf/plugins/dotnet-core/set-dotnet-home.zsh ]] || \
+    source "$HOME/.asdf/plugins/dotnet-core/set-dotnet-home.zsh"
+export PATH="$HOME/.dotnet/tools:$PATH"
+
 export PATH="$HOME/.local/bin:$PATH"
 
 # user
