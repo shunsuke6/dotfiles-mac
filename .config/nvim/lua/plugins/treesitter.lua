@@ -3,7 +3,9 @@ local m = {}
 m.setup = function(use)
     use({
         "nvim-treesitter/nvim-treesitter",
-        run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+        run = function()
+            require("nvim-treesitter.install").update({ with_sync = true })
+        end,
     })
     use("nvim-treesitter/nvim-treesitter-textobjects")
     use("RRethy/nvim-treesitter-textsubjects")
@@ -13,18 +15,16 @@ m.setup = function(use)
     use("JoosepAlviste/nvim-ts-context-commentstring")
     use("andymass/vim-matchup")
 
-    if not vim.g.vscode then
-        use("nvim-treesitter/nvim-treesitter-context")
-        use("haringsrob/nvim_context_vt")
-        use({
-            "m-demare/hlargs.nvim",
-            requires = {
-                "nvim-treesitter/nvim-treesitter",
-            },
-        })
-        use("p00f/nvim-ts-rainbow")
-        use("windwp/nvim-ts-autotag")
-    end
+    use("nvim-treesitter/nvim-treesitter-context")
+    use("haringsrob/nvim_context_vt")
+    use({
+        "m-demare/hlargs.nvim",
+        requires = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+    })
+    use("p00f/nvim-ts-rainbow")
+    use("windwp/nvim-ts-autotag")
 
     m.setup_treesitter()
 
@@ -39,10 +39,9 @@ end
 m.setup_treesitter = function()
     require("nvim-treesitter.configs").setup({
         ensure_installed = "all",
-        ignore_install = { "phpdoc" }, -- fails repeatedly. (nvim-treesitter issue#2837)
         sync_install = true,
         highlight = {
-            enable = not vim.g.vscode,
+            enable = true,
         },
         incremental_selection = {
             enable = true,
