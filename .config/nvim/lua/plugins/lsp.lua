@@ -11,7 +11,10 @@ m.setup = function(use)
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
     })
-    use("j-hui/fidget.nvim")
+    use({
+        "j-hui/fidget.nvim",
+        tag = "legacy",
+    })
     use("RRethy/vim-illuminate")
 
     vim.g.Illuminate_delay = 500
