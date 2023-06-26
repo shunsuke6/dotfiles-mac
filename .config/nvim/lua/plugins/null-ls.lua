@@ -236,7 +236,7 @@ m.setup_null_ls = function()
 
             -- for rust
             -- be used by rust_analyzer
-            -- null_ls.builtins.formatting.rustfmt,
+            null_ls.builtins.formatting.rustfmt,
 
             -- for bash
             null_ls.builtins.formatting.shfmt,
