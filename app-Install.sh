@@ -1,62 +1,63 @@
-#!/usr/bin/zsh
+#!/bin/zsh
 
-if ! command -v brew 1>/dev/null 2>&1; then
-    print -P "%F{160} Homebrew not fond.%f"
-    exit 0
-fi
-
-install(){
-    brew update
-    brew upgrade
-
-    local brew_list=("${@}")
-
-    for app in "${brew_list[@]}"; do
-        if ! command -v $app 1>/dev/null 2>&1; then
-            print -P "%F{33} %F{220}Installing %F{33}%F{220}$app …%f"
-            brew install $app && \
-            print -P "%F{33} %F{34}Installation successful.%f%b" || \
-            print -P "%F{160} The clone has failed.%f"
-        fi
-    done
-
-    if command -v luarocks 1>/dev/null 2>&1; then
-        if ! command -v luacheck 1>/dev/null 2>&1; then
-            print -P "%F{33} %F{220}Installing %F{33}%F{220}luacheck …%f"
-            luarocks install luacheck && \
-            print -P "%F{33} %F{34}Installation successful.%f%b" || \
-            print -P "%F{160} Installation has failed.%f"
-        fi
-    fi
+check_homebrew() {
+  if ! command -v brew 1>/dev/null 2>&1; then
+    print -P "%F{160} Homebrew not found.%f"
+    exit 1
+  fi
 }
-brew_list=(
-    bashdb
-    cmake
-    codespell
-    composer
-    colordiff
-    cppcheck
-    fd
-    fzf
-    gawk
-    gh
-    google-java-format
-    imagemagick
-    jq
-    llvm
-    luarocks
-    maven
-    nginx
-    openssh
-    ranger
-    ripgrep
-    shfmt
-    shellcheck
-    source-highlight
-    stylua
-    sqlfluff
-    tidy-html5
-    tmux
+
+update_homebrew() {
+  brew update
+  brew upgrade
+}
+
+install_package() {
+  local package_name="$1"
+  local package_description="$2"
+
+  if ! command -v "$package_name" 1>/dev/null 2>&1; then
+    print -P "%F{33} %F{220}Installing %F{33}%F{220}$package_description …%f"
+    brew install "$package_name" && \
+    print -P "%F{33} %F{34}Installation successful.%f%b" || \
+    print -P "%F{160} The installation has failed.%f"
+  fi
+}
+
+declare -A packages=(
+  ["bashdb"]="Bash debugger"
+  ["cmake"]="Cross-platform make"
+  ["codespell"]="Spell checker for source code"
+  ["composer"]="Dependency manager for PHP"
+  ["colordiff"]="Color-highlighted diff"
+  ["cppcheck"]="Static analysis tool for C/C++"
+  ["fd"]="Fast and user-friendly alternative to find"
+  ["fzf"]="Command-line fuzzy finder"
+  ["gawk"]="GNU awk"
+  ["gh"]="GitHub CLI"
+  ["google-java-format"]="Java code formatter"
+  ["imagemagick"]="Image manipulation library"
+  ["jq"]="Command-line JSON processor"
+  ["llvm"]="Next-gen compiler infrastructure"
+  ["luarocks"]="Package manager for Lua"
+  ["maven"]="Build automation tool for Java"
+  ["nginx"]="Web server"
+  ["openssh"]="Secure shell client and server"
+  ["ranger"]="File manager with VI key bindings"
+  ["ripgrep"]="Line-oriented search tool"
+  ["shfmt"]="Shell script formatter"
+  ["shellcheck"]="Shell script static analysis tool"
+  ["source-highlight"]="Syntax highlighter"
+  ["stylua"]="Opinionated Lua code formatter"
+  ["sqlfluff"]="SQL linter and auto-formatter"
+  ["tidy-html5"]="HTML5 syntax checker and pretty printer"
+  ["tmux"]="Terminal multiplexer"
 )
 
-install "${brew_list[@]}"
+check_homebrew
+update_homebrew
+
+for package_name in "${!packages[@]}"; do
+  package_description="${packages[$package_name]}"
+  install_package "$package_name" "$package_description"
+done
