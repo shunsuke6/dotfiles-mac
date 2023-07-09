@@ -3,7 +3,7 @@
 local_plugin_list=(
   dart
   deno
-  dotnet-core
+  dotnet
   elixir
   erlang
   gleam

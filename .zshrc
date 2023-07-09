@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/zsh -x
 
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
@@ -82,8 +82,8 @@ if [[ ! -d $HOME/.cargo ]]; then
 fi
 [[ ! -f $HOME/.cargo/env ]] || source "$HOME/.cargo/env"
 
-[[ ! -f $HOME/.asdf/plugins/dotnet-core/set-dotnet-home.zsh ]] || \
-    source "$HOME/.asdf/plugins/dotnet-core/set-dotnet-home.zsh"
+[[ ! -f $HOME/.asdf/plugins/dotnet/set-dotnet-home.zsh ]] || \
+    source "$HOME/.asdf/plugins/dotnet/set-dotnet-home.zsh"
 export PATH="$HOME/.dotnet/tools:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
