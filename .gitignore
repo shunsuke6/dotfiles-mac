@@ -33,6 +33,7 @@
 ## zsh
 !/.zprofile
 !/.zshrc
+!/.zshrc.lazy
 !/.zshenv
 ## tmux
 !/.tmux.conf

@@ -139,20 +139,6 @@ setopt hist_ignore_space
 setopt hist_reduce_blanks
 setopt extended_glob
 
-########################################
-# Alias
-alias la='ls -a -l'
-alias ll='ls -l'
-alias ls='ls -F --color=auto'
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-alias mkdir='mkdir -p'
-alias diff='colordiff -u'
-alias grep='grep --color=auto'
-alias vi='nvim'
-alias vim='nvim'
-alias gd='git diff | git-split-diffs --color | less -RFX'
 
 ########################################
 # tmux
@@ -174,35 +160,8 @@ if [[ -z "$TMUX" && ! -z "$PS1" && $TERM_PROGRAM != "vscode" ]]; then
 fi
 
 ########################################
-# local run command
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
-
-########################################
-
-########################################
-# PATH
-
-# FLUTTER
-export FLUTTER_ROOT="$(asdf where flutter)"
-# Java
-export JAVA_WORKSPACE="$HOME/.workspace"
-# llvm
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-# asdf vm
-export PATH="$HOME/.dotnet/tools:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-# user
-export PATH="$HOME/bin:$PATH"
-
-
-typeset -U PATH
-########################################
-
-########################################
-#GPG
-export GPG_TTY=$(tty)
+# lazy alias path
+zinit lucid wait="0" atinit='source $HOME/.zshrc.local;source $HOME/.zshrc.lazy' for zdharma-continuum/null
 
 ########################################
 # bindkey Mac

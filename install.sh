@@ -58,6 +58,7 @@ dotfiles_or_dirs=(
   .alacritty.yml
   .zprofile
   .zshrc
+  .zshrc.lazy
   .zshenv
   .tmux.conf
   .gitconfig
