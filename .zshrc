@@ -63,15 +63,8 @@ if [[ ! -d $HOME/.asdf ]]; then
 fi
 
 # poetry
-local pypoetry="$HOME/Library/Application Support/pypoetry"
-if [[ ! -d $pypoetry ]]; then
-
-    print -P "%F{33} %F{220}Installing %F{33}poetry%F{220} python environment manager…%f"
-        curl -sSL https://install.python-poetry.org | python3 -. && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} Installation failed.%f%b"
-fi
-export PATH="~/Library/Application Support/pypoetry/venv/bin/poetry:$PATH"
+[[ ! -d $HOME/bin/update-poetry.sh ]] || \
+    source "$HOME/bin/update-poetry.sh"
 
 # rustup
 if [[ ! -d $HOME/.cargo ]]; then

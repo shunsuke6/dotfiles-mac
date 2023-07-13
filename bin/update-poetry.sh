@@ -2,13 +2,10 @@
 
 ESC=$(printf '\033')
 printf "${ESC}[1;36m%s${ESC}[m\n" '***** poetry updating... *****'
+source update-asdf-plugins.sh
 
-if ! command -v poetry 1>/dev/null 2>&1; then
-  printf "${ESC}[1;31m%s${ESC}[m\n" '***** poetry NOT installed. *****'
-  exit 1
-fi
-
-(poetry self update &&
+(update-asdf-self.sh &&
+  update_asdf_plugins "true" "poetry" &&
   poetry completions zsh >~/.zfunc/_poetry &&
   printf "${ESC}[1;32m%s${ESC}[m\n" '***** poetry updated. *****.' &&
   exit 0) ||

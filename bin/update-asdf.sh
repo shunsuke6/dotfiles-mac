@@ -9,6 +9,7 @@ local_plugin_list=(
   gleam
   golang
   nodejs
+  poetry
 )
 global_plugin_list=(
   flutter
