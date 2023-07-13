@@ -1,9 +1,10 @@
-#!/usr/bin/zsh -x
-
+#!/usr/bin/zsh
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+
 #######################################
 # Plugins
+
 # brew
 export PATH="/opt/homebrew/bin:$PATH"
 
@@ -25,13 +26,13 @@ zinit light zdharma-continuum/zinit-annex-as-monitor
 zinit light zdharma-continuum/zinit-annex-bin-gem-node
 zinit light zdharma-continuum/zinit-annex-patch-dl
 zinit light zdharma-continuum/zinit-annex-rust
-zinit light zsh-users/zsh-completions
+zinit light asdf-vm/asdf
+# zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-history-substring-search
 zinit light zdharma/history-search-multi-word
-zinit light romkatv/powerlevel10k
-zinit light asdf-vm/asdf
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # load powerlevel10k
 [[ ! -f $HOME/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -50,18 +51,6 @@ export VISUAL=nvim
 export BEMENU_BACKEND=curses
 export BEMENU_OPTS='--scrollbar=autohide'
 
-# ssh
-eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh 2>/dev/null)
-export SSH_AUTH_SOCK
-
-# asdf
-if [[ ! -d $HOME/.asdf ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}asdf%F{220} tool version manager…%f"
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} Installation failed.%f%b"
-fi
-
 # poetry
 [[ ! -d $HOME/bin/update-poetry.sh ]] || \
     source "$HOME/bin/update-poetry.sh"
@@ -77,15 +66,6 @@ fi
 
 [[ ! -f $HOME/.asdf/plugins/dotnet/set-dotnet-home.zsh ]] || \
     source "$HOME/.asdf/plugins/dotnet/set-dotnet-home.zsh"
-export PATH="$HOME/.dotnet/tools:$PATH"
-
-export PATH="$HOME/.local/bin:$PATH"
-
-# user
-export PATH="$HOME/bin:$PATH"
-export JAVA_WORKSPACE="$HOME/.workspace"
-
-typeset -U PATH
 
 #######################################
 # Generics
@@ -130,10 +110,6 @@ if [[ ! -f $HOME/.zfunc/_cargo ]]; then
         print -P "%F{160} Installation failed.%f%b"
 fi
 fpath+=~/.zfunc
-
-# load completion
-autoload -Uz compinit
-compinit
 
 # ignore case
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -205,22 +181,35 @@ fi
 
 ########################################
 # PATH
-export FLUTTER_ROOT="$(asdf where flutter)"
 
-## llvm
+# FLUTTER
+export FLUTTER_ROOT="$(asdf where flutter)"
+# Java
+export JAVA_WORKSPACE="$HOME/.workspace"
+# llvm
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+# asdf vm
+export PATH="$HOME/.dotnet/tools:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+# user
+export PATH="$HOME/bin:$PATH"
+
+
+typeset -U PATH
+########################################
 
 ########################################
 #GPG
 export GPG_TTY=$(tty)
 
 ########################################
-# bindkey
+# bindkey Mac
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
 bindkey "[Z" reverse-menu-complete
+
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
