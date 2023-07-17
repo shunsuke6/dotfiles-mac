@@ -14,19 +14,9 @@ end
 api.nvim_set_keymap("n", "<Leader>h", ":noh<CR>", { noremap = true, silent = true })
 
 -- Japanese
-api.nvim_set_keymap("n", "あ", "a", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "い", "i", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "う", "u", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "Ｕ", "U", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "え", "e", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "お", "o", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "O", "O", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "ｄｄ", "dd", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "ｙｙ", "yy", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "ｐ", "p", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "Ｐ", "P", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "ｎ", "n", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "Ｎ", "N", { noremap = true, silent = true })
+
+api.nvim_set_keymap("n", "っd", "dd", { noremap = true, silent = true })
+api.nvim_set_keymap("n", "っy", "yy", { noremap = true, silent = true })
 
 -- Insert mode C ''
 api.nvim_set_keymap("i", "<C-j>", "<down>", { noremap = true, silent = true })
