@@ -96,3 +96,4 @@ key_bindings:
   - { key: B, mods: Command, mode: ~Search, action: SearchBackward }
   - { key: F, mods: Alt, chars: "\x1bf" }
   - { key: T, mods: Alt, chars: "\x1bt" }
+  - { key: N, mods: Control|Shift, action: SpawnNewInstance }
