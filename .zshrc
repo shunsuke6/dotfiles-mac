@@ -4,7 +4,6 @@
 
 #######################################
 # Plugins
-
 # brew
 export PATH="/opt/homebrew/bin:$PATH"
 
@@ -27,7 +26,7 @@ zinit light zdharma-continuum/zinit-annex-bin-gem-node
 zinit light zdharma-continuum/zinit-annex-patch-dl
 zinit light zdharma-continuum/zinit-annex-rust
 zinit light asdf-vm/asdf
-# zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-history-substring-search
@@ -170,9 +169,9 @@ bindkey '^E' end-of-line
 bindkey "[Z" reverse-menu-complete
 
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
 ########################################
 #GPG
 export GPG_TTY=$(tty)
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
