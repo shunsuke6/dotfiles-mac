@@ -3,7 +3,7 @@ local m = {}
 m.setup = function(use)
     use({
         "akinsho/bufferline.nvim",
-        tag = "v2.*",
+        tag = "*",
         requires = "kyazdani42/nvim-web-devicons",
     })
 
