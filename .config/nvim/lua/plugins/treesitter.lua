@@ -23,7 +23,7 @@ m.setup = function(use)
             "nvim-treesitter/nvim-treesitter",
         },
     })
-    use("p00f/nvim-ts-rainbow")
+    use("HiPhish/nvim-ts-rainbow2")
     use("windwp/nvim-ts-autotag")
 
     m.setup_treesitter()
@@ -126,15 +126,17 @@ m.setup_treesitter = function()
             },
         },
         rainbow = {
-            enable = not vim.g.vscode,
-            extended_mode = true,
-            max_file_line = nil,
+            enable = true,
+            -- Which query to use for finding delimiters
+            query = "rainbow-parens",
+            -- Highlight the entire buffer all at once
+            strategy = require("ts-rainbow").strategy.global,
         },
         context_commentstring = {
             enable = true,
         },
         matchup = {
-            enable = true,
+            enable = false,
         },
         autotag = {
             enable = not vim.g.vscode,
