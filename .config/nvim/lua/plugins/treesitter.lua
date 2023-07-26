@@ -23,9 +23,25 @@ m.setup = function(use)
             "nvim-treesitter/nvim-treesitter",
         },
     })
-    use("HiPhish/nvim-ts-rainbow2")
     use("windwp/nvim-ts-autotag")
-
+    use({
+        "HiPhish/rainbow-delimiters.nvim",
+        config = function()
+            local rainbow_delimiters = require("rainbow-delimiters")
+            require("rainbow-delimiters.setup")({
+                strategy = {
+                    [""] = function()
+                        return nil
+                    end,
+                    commonlisp = rainbow_delimiters.strategy["global"],
+                    scheme = rainbow_delimiters.strategy["global"],
+                    query = rainbow_delimiters.strategy["global"],
+                    clojure = rainbow_delimiters.strategy["global"],
+                    html = rainbow_delimiters.strategy["global"],
+                },
+            })
+        end,
+    })
     m.setup_treesitter()
 
     if not vim.g.vscode then
@@ -124,13 +140,6 @@ m.setup_treesitter = function()
                 [";"] = "textsubjects-container-outer",
                 ["i;"] = "textsubjects-container-inner",
             },
-        },
-        rainbow = {
-            enable = true,
-            -- Which query to use for finding delimiters
-            query = "rainbow-parens",
-            -- Highlight the entire buffer all at once
-            strategy = require("ts-rainbow").strategy.global,
         },
         context_commentstring = {
             enable = true,
