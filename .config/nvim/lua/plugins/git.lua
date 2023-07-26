@@ -2,7 +2,7 @@ local m = {}
 
 m.setup = function(use)
     use({
-        "TimUntersberger/neogit",
+        "NeogitOrg/neogit",
         requires = {
             "nvim-lua/plenary.nvim",
         },
