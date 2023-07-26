@@ -32,7 +32,7 @@ We will fix them as we go along.
 - curl
 - wget
 - homebrew
-- neovim
+- fig(Recommend)
 
 ### packer install
 
