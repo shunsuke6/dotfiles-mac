@@ -219,6 +219,12 @@ m.setup_lsp = function()
             elseif server_name == "omnisharp" then
                 -- csharp
                 setup_lsp_omnisharp(serverconfig, on_attach, capabilities)
+            elseif server_name == "elixirls" then
+                serverconfig.setup({
+                    cmd = { "elixir-ls" },
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                })
             else
                 setup_lsp_any(serverconfig, on_attach, capabilities)
             end

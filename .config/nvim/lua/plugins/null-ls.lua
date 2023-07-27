@@ -79,9 +79,9 @@ local get_ignore_words_when_rust = function()
     local utils = require("null-ls.utils").make_conditional_utils()
 
     if utils.root_has_file("Cargo.toml") then
-	return { "--ignore-words=crate" }
+        return { "--ignore-words=crate" }
     end
-     return {}
+    return {}
 end
 
 m.setup_null_ls = function()
@@ -104,8 +104,8 @@ m.setup_null_ls = function()
 
             -- for spell
             null_ls.builtins.diagnostics.codespell.with({
-		extra_args = get_ignore_words_when_rust(),
-	   }),
+                extra_args = get_ignore_words_when_rust(),
+            }),
 
             -- for c/cpp
             null_ls.builtins.diagnostics.cppcheck,
@@ -283,6 +283,9 @@ m.setup_null_ls = function()
             }),
 
             null_ls.builtins.formatting.trim_whitespace,
+
+            null_ls.builtins.formatting.mix,
+            null_ls.builtins.diagnostics.credo,
         },
     })
 end
