@@ -158,11 +158,14 @@ local function setup_lsp_tsserver(serverconfig, on_attach, capabilities)
         capabilities = capabilities,
     })
 end
+
 local function setup_lsp_denols(serverconfig, on_attach, capabilities)
     local lspconfig = require("lspconfig")
+    local stat = vim.loop.fs_stat(vim.fn.expand("deno.json"))
+    local has_deno = stat ~= nil and true or false
     serverconfig.setup({
         init_options = {
-            enable = true,
+            enable = has_deno,
             lint = true,
             unstable = false,
         },
@@ -189,7 +192,6 @@ m.setup_lsp = function()
     mason_lspconfig.setup_handlers({
         function(server_name)
             local serverconfig = lspconfig[server_name]
-
             if server_name == "clangd" then
                 -- c/cpp
                 setup_lsp_clangd(serverconfig, on_attach)

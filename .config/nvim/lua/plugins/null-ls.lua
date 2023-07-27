@@ -39,7 +39,8 @@ local node_modules_path = "node_modules/.bin"
 local python_venv_path = ".venv/bin"
 local sqlfluff_extra_args = { "--dialect", "postgres" }
 
-local has_deno_configuration = function(utils)
+local has_deno_configuration = function()
+    local utils = require("null-ls.utils").make_conditional_utils()
     return utils.root_has_file({
         "deno.json",
         "deno.jsonc",
@@ -236,9 +237,12 @@ m.setup_null_ls = function()
             null_ls.builtins.formatting.deno_fmt.with({
                 condition = has_deno_configuration,
             }),
+            null_ls.builtins.diagnostics.deno_lint.with({
+                condition = has_deno_configuration,
+            }),
 
-            null_ls.builtins.formatting.prettier.with({
-                prefer_local = "node_modules/.bin",
+            null_ls.builtins.formatting.prettierd.with({
+                prefer_local = node_modules_path,
                 disabled_filetypes = get_filetypes_disable_prettier(),
             }),
 
