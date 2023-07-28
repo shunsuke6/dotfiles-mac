@@ -175,6 +175,14 @@ local function setup_lsp_denols(serverconfig, on_attach, capabilities)
     })
 end
 
+local function setup_lsp_elixirls(serverconfig, on_attach, capabilities)
+    local lspconfig = require("lspconfig")
+    serverconfig.setup({
+        cmd = { "elixir-ls" },
+        on_attach = on_attach,
+        capabilities = capabilities,
+    })
+end
 local function setup_lsp_any(serverconfig, on_attach, capabilities)
     serverconfig.setup({
         on_attach = on_attach,
@@ -222,11 +230,7 @@ m.setup_lsp = function()
                 -- csharp
                 setup_lsp_omnisharp(serverconfig, on_attach, capabilities)
             elseif server_name == "elixirls" then
-                serverconfig.setup({
-                    cmd = { "elixir-ls" },
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                })
+                setup_lsp_elixirls(serverconfig, on_attach, capabilities)
             else
                 setup_lsp_any(serverconfig, on_attach, capabilities)
             end
