@@ -42,4 +42,5 @@ require("packer").startup(function(use)
         require("plugins.null-ls").setup(use)
     end
     require("plugins.toys").setup(use)
+    require("plugins.copilot").setup(use)
 end)
