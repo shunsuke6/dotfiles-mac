@@ -102,6 +102,7 @@ m.setup_neotree = function()
                 ["m"] = "move",
                 ["q"] = "close_window",
                 ["R"] = "refresh",
+		        ["O"] = "expand_all_nodes",
                 ["?"] = "show_help",
             },
         },
