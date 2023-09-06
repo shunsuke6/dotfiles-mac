@@ -239,6 +239,8 @@ m.setup_lsp = function()
                 setup_lsp_omnisharp(serverconfig, on_attach, capabilities)
             elseif server_name == "elixirls" then
                 setup_lsp_elixirls(serverconfig, on_attach, capabilities)
+            elseif server_name == "bash" then
+                setup_lsp_bash(serverconfig, on_attach, capabilities)
             else
                 setup_lsp_any(serverconfig, on_attach, capabilities)
             end
