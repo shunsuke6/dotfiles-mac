@@ -183,6 +183,14 @@ local function setup_lsp_elixirls(serverconfig, on_attach, capabilities)
         capabilities = capabilities,
     })
 end
+local function setup_lsp_elixirls(serverconfig, on_attach, capabilities)
+    local lspconfig = require("lspconfig")
+    serverconfig.setup({
+        cmd = { "bash-language-server" },
+        on_attach = on_attach,
+        capabilities = capabilities,
+    })
+end
 local function setup_lsp_any(serverconfig, on_attach, capabilities)
     serverconfig.setup({
         on_attach = on_attach,
