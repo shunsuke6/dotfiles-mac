@@ -1,26 +1,30 @@
 local m = {}
 
-m.setup = function(use)
-    use("hrsh7th/nvim-cmp")
-    use("hrsh7th/cmp-buffer")
-    use("hrsh7th/cmp-path")
-    use("hrsh7th/cmp-cmdline")
-    use("hrsh7th/cmp-nvim-lsp-signature-help")
-    use("hrsh7th/cmp-nvim-lsp-document-symbol")
-    use("hrsh7th/cmp-nvim-lua")
-    use("hrsh7th/cmp-emoji")
-    use("onsails/lspkind-nvim")
-    use("hrsh7th/vim-vsnip")
-    use("hrsh7th/cmp-vsnip")
-    use("rafamadriz/friendly-snippets")
+m = { 
+	{"hrsh7th/nvim-cmp"},
+	{"hrsh7th/cmp-buffer"},
+   	{"hrsh7th/cmp-path"},
+   	{"hrsh7th/cmp-cmdline"},
+   	{"hrsh7th/cmp-nvim-lsp-signature-help"},
+   	{"hrsh7th/cmp-nvim-lsp-document-symbol"},
+   	{"hrsh7th/cmp-nvim-lua"},
+   	{"hrsh7th/cmp-emoji"},
+   	{"onsails/lspkind-nvim"},
+   	{"hrsh7th/vim-vsnip"},
+   	{"hrsh7th/cmp-vsnip"},
+   	{"rafamadriz/friendly-snippets"},
 
-    vim.g.completeopt = "menu,menuone,noselect"
+    init = function()
+	    vim.g.completeopt = "menu,menuone,noselect"
+    end,
 
-    m.setup_lspkind()
-    m.setup_cmp()
-end
+    config = function()
+	    setup_lspkind()
+       setup_cmp()
+    end,
+}
 
-m.setup_lspkind = function()
+setup_lspkind = function()
     require("lspkind").init({
         mode = "symbol_text",
         preset = "codicons",
@@ -54,7 +58,7 @@ m.setup_lspkind = function()
     })
 end
 
-m.setup_cmp = function()
+setup_cmp = function()
     local lspkind = require("lspkind")
     local cmp = require("cmp")
     cmp.setup({

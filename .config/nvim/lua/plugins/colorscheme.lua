@@ -1,12 +1,13 @@
 local m = {}
 
-m.setup = function(use)
-    use("EdenEast/nightfox.nvim")
+m = {
+        "EdenEast/nightfox.nvim",
+        config = function()
+            setup_nightfox()
+        end,
+    }
 
-    m.setup_nightfox()
-end
-
-m.setup_nightfox = function()
+setup_nightfox = function()
     require("nightfox").setup({
         options = {
             transparent = true,

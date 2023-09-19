@@ -1,15 +1,16 @@
 local m = {}
 
-m.setup = function(use)
-    use({
+m = {
         "jose-elias-alvarez/null-ls.nvim",
-        requires = {
+        dependencies = {
             "nvim-lua/plenary.nvim",
-        },
-    })
+    },
 
-    m.setup_null_ls()
-end
+    config = function()
+       setup_null_ls()
+    end
+
+}
 
 local lsp_formatting = function(bufnr)
     vim.lsp.buf.format({
@@ -85,7 +86,7 @@ local get_ignore_words_when_rust = function()
     return {}
 end
 
-m.setup_null_ls = function()
+setup_null_ls = function()
     local null_ls = require("null-ls")
     null_ls.setup({
         on_attach = on_attach,

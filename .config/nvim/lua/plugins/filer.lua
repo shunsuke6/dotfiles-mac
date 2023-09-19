@@ -1,23 +1,18 @@
 local m = {}
-
-m.setup = function(use)
-    use({
+    vim.g.neo_tree_remove_legacy_commands = 1
+m = {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
-        requires = {
+        dependencies = {
             "nvim-lua/plenary.nvim",
             "kyazdani42/nvim-web-devicons",
             "MunifTanjim/nui.nvim",
         },
-    })
+        
+}
 
-    vim.g.neo_tree_remove_legacy_commands = 1
+m.opts =  {
 
-    m.setup_neotree()
-end
-
-m.setup_neotree = function()
-    require("neo-tree").setup({
         close_if_last_window = false,
         popup_border_style = "rounded",
         enable_git_status = true,
@@ -39,10 +34,7 @@ m.setup_neotree = function()
                 expander_highlight = "NeoTreeExpander",
             },
             icon = {
-                folder_closed = "",
-                folder_open = "",
-                folder_empty = "ﰊ",
-                default = "*",
+                folder_closed = "", folder_open = "", folder_empty = "ﰊ", default = "*",
                 highlight = "NeoTreeFileIcon",
             },
             modified = {
@@ -169,8 +161,10 @@ m.setup_neotree = function()
                 },
             },
         },
-    })
-end
+    }
+
+
+
 
 vim.keymap.set("n", "gx", "<Cmd>Neotree filesystem reveal toggle<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gz", "<Cmd>Neotree buffers toggle<CR>", { noremap = true, silent = true })

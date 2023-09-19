@@ -1,16 +1,16 @@
 local m = {}
 
-m.setup = function(use)
-    use({
+m = {
         "akinsho/bufferline.nvim",
         tag = "*",
         requires = "kyazdani42/nvim-web-devicons",
-    })
 
-    m.setup_bufferline()
-end
+    config = function()
+	    setup_bufferline()
+	end
+}
 
-m.setup_bufferline = function()
+setup_bufferline = function()
     require("bufferline").setup({
         options = {
             numbers = "both",

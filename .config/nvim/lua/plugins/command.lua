@@ -1,7 +1,7 @@
 local m = {}
 
-m.setup = function(use)
-    use("mileszs/ack.vim")
-end
+m =  {
+    "mileszs/ack.vim",
+}
 
 return m
