@@ -102,7 +102,7 @@ m.setup_neotree = function()
                 ["m"] = "move",
                 ["q"] = "close_window",
                 ["R"] = "refresh",
-		        ["O"] = "expand_all_nodes",
+                ["O"] = "expand_all_nodes",
                 ["?"] = "show_help",
             },
         },
@@ -126,7 +126,9 @@ m.setup_neotree = function()
                     --"thumbs.db"
                 },
             },
-            follow_current_file = false,
+            follow_current_file = {
+                enable = false,
+            },
             group_empty_dirs = false,
             hijack_netrw_behavior = "open_default",
             use_libuv_file_watcher = false,
@@ -144,7 +146,9 @@ m.setup_neotree = function()
             },
         },
         buffers = {
-            follow_current_file = true,
+            follow_current_file = {
+                enable = false,
+            },
             group_empty_dirs = true,
             show_unloaded = true,
             window = {
@@ -174,6 +178,6 @@ end
 
 vim.keymap.set("n", "gx", "<Cmd>Neotree filesystem reveal toggle<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gz", "<Cmd>Neotree buffers toggle<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "gX", "<Cmd>Neotree git_status show<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "gX", "<Cmd>Neotree git_status<CR>", { noremap = true, silent = true })
 
 return m
