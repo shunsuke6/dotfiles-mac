@@ -141,9 +141,6 @@ m.setup_treesitter = function()
                 ["i;"] = "textsubjects-container-inner",
             },
         },
-        context_commentstring = {
-            enable = true,
-        },
         matchup = {
             enable = false,
         },
