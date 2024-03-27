@@ -20,7 +20,7 @@ require("lazy").setup({
         require("plugins.colorscheme"),
 --        require("plugins.lsp"),
         require("plugins.completion"),
---        require("plugins.fzf"),
+        require("plugins.fzf"),
 --        require("plugins.treesitter"),
 --        require("plugins.status-line"),
         require("plugins.buffer-line"),

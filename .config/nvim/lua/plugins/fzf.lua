@@ -1,22 +1,24 @@
 local m = {}
 
-m.setup = function(use)
-    use({
-        "nvim-telescope/telescope.nvim", tag = '0.1.0',
-        requires = {
-            "nvim-lua/plenary.nvim",
+m = {
+	{
+          "nvim-telescope/telescope.nvim", tag = '0.1.0',
+          requires = {
+              "nvim-lua/plenary.nvim",
         },
-    })
-    use({
-        "nvim-telescope/telescope-fzf-native.nvim",
-        run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-    })
-    use("nvim-telescope/telescope-ui-select.nvim")
+	{
+          "nvim-telescope/telescope-fzf-native.nvim",
+          run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+	},
+	{"nvim-telescope/telescope-ui-select.nvim"},
 
-    m.setup_telescope()
-end
+     config = function()
+         setup_telescope()
+     end
+    }
+}
 
-m.setup_telescope = function()
+setup_telescope = function()
     -- Key mappings by default.
     -- <C-n>/<Down>	Next item
     -- <C-p>/<Up>	Previous item
