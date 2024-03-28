@@ -8,7 +8,7 @@ m = {
             "kyazdani42/nvim-web-devicons",
             "MunifTanjim/nui.nvim",
         },
-        
+
 }
 
 m.opts =  {
@@ -118,7 +118,9 @@ m.opts =  {
                     --"thumbs.db"
                 },
             },
-            follow_current_file = false,
+            follow_current_file = {
+		    enabled = false,
+	    },
             group_empty_dirs = false,
             hijack_netrw_behavior = "open_default",
             use_libuv_file_watcher = false,
@@ -136,7 +138,9 @@ m.opts =  {
             },
         },
         buffers = {
-            follow_current_file = true,
+            follow_current_file = {
+		    enabled = true,
+	    },
             group_empty_dirs = true,
             show_unloaded = true,
             window = {
