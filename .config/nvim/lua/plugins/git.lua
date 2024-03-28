@@ -1,26 +1,29 @@
 local m = {}
 
-m.setup = function(use)
-    use({
+m =
+{
+	{
         "NeogitOrg/neogit",
         requires = {
             "nvim-lua/plenary.nvim",
         },
     })
-    use({
+    {
         "sindrets/diffview.nvim",
         requires = {
             "nvim-lua/plenary.nvim",
         },
-    })
-    use("lewis6991/gitsigns.nvim")
+    }
+    {"lewis6991/gitsigns.nvim"}
 
-    m.setup_neogit()
-    m.setup_diffview()
-    m.setup_gitsigns()
-end
+    config = function()
+        setup_neogit()
+        setup_diffview()
+        setup_gitsigns()
+    end
+}
 
-m.setup_neogit = function()
+setup_neogit = function()
     -- Key mappings by default.
     -- Tab		Toggle diff
     -- 1, 2, 3, 4	Set a foldlevel
@@ -55,7 +58,7 @@ m.setup_neogit = function()
     })
 end
 
-m.setup_diffview = function()
+setup_diffview = function()
     local actions = require("diffview.actions")
     require("diffview").setup({
         diff_binaries = false,
@@ -170,7 +173,7 @@ m.setup_diffview = function()
     })
 end
 
-m.setup_gitsigns = function()
+setup_gitsigns = function()
     require("gitsigns").setup({
         on_attach = function(bufnr)
             local gs = package.loaded.gitsigns
