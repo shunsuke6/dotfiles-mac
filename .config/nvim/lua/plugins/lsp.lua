@@ -1,33 +1,42 @@
 local m = {}
 
-m.setup = function(use)
-    use("neovim/nvim-lspconfig")
-    use("williamboman/mason.nvim")
-    use("williamboman/mason-lspconfig.nvim")
-    use("hrsh7th/cmp-nvim-lsp")
-    use("tami5/lspsaga.nvim")
-    use("folke/lsp-colors.nvim")
-    use({
+m = {
+    {
+
+
+    {"neovim/nvim-lspconfig"},
+    {"williamboman/mason.nvim"},
+    {"williamboman/mason-lspconfig.nvim"},
+    {"hrsh7th/cmp-nvim-lsp"},
+    {"tami5/lspsaga.nvim"},
+    {"folke/lsp-colors.nvim"},
+    {
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
-    })
-    use({
+    },
+    {
         "j-hui/fidget.nvim",
         tag = "legacy",
-    })
-    use("RRethy/vim-illuminate")
+    },
+    {"RRethy/vim-illuminate"},
 
-    vim.g.Illuminate_delay = 500
-    vim.g.Illuminate_highlightUnderCursor = 0
+config = function()
 
-    m.setup_lsp()
-    m.setup_lspsaga()
-    m.setup_lsp_color()
-    m.setup_trouble()
-    m.setup_fidget()
+    
+
+    setup_lsp()
+    setup_lspsaga()
+    setup_lsp_color()
+    setup_trouble()
+    setup_fidget()
 end
 
-m.on_attach = function(client, bufnr)
+}
+}
+vim.g.Illuminate_delay = 500
+vim.g.Illuminate_highlightUnderCursor = 0
+
+on_attach = function(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
@@ -51,7 +60,7 @@ m.on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
 end
 
-m.get_capabilities = function()
+get_capabilities = function()
     return require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 end
 
@@ -198,7 +207,7 @@ local function setup_lsp_any(serverconfig, on_attach, capabilities)
     })
 end
 
-m.setup_lsp = function()
+setup_lsp = function()
     local mason = require("mason")
     local mason_lspconfig = require("mason-lspconfig")
     local lspconfig = require("lspconfig")
@@ -248,7 +257,7 @@ m.setup_lsp = function()
     })
 end
 
-m.setup_lspsaga = function()
+setup_lspsaga = function()
     require("lspsaga").setup({
         debug = false,
         use_saga_diagnostic_sign = true,
@@ -291,7 +300,7 @@ m.setup_lspsaga = function()
     })
 end
 
-m.setup_lsp_color = function()
+setup_lsp_color = function()
     require("lsp-colors").setup({
         Error = "#db4b4b",
         Warning = "#e0af68",
@@ -300,7 +309,7 @@ m.setup_lsp_color = function()
     })
 end
 
-m.setup_trouble = function()
+setup_trouble = function()
     require("trouble").setup({
         height = 10,
         auto_close = true,
@@ -308,11 +317,11 @@ m.setup_trouble = function()
     })
 end
 
-m.setup_fidget = function()
+setup_fidget = function()
     require("fidget").setup()
 end
 
-m.setup_illuminate = function()
+setup_illuminate = function()
     require("illuminate").configure({
         providers = {
             "lsp",
