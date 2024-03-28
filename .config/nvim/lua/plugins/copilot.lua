@@ -1,9 +1,17 @@
 local m = {}
 
-m.setup = function(use)
-    use("github/copilot.vim")
+m = {
+	"github/copilot.vim",
+	config = function()
+		setup_copilot()
+	end,
+      }
+
+setup_copilot = function(use)
+    use()
+    vim.g.copilot_no_tab_map = true
+    vim.api.nvim_set_keymap("i", "<C-t>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 end
 
-vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<C-t>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 return m
+
