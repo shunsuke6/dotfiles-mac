@@ -1,25 +1,28 @@
 local m = {}
 
-m.setup = function(use)
-    use({
+setup = {
+
+    {
         "nvim-lualine/lualine.nvim",
         requires = {
             "kyazdani42/nvim-web-devicons",
             opt = true,
         },
-    })
-    use({
+    },
+    {
         "SmiteshP/nvim-navic",
         requires = {
             "nvim-treesitter/nvim-treesitter",
         },
-    })
+    },
 
-    m.setup_lualine()
-    m.setup_gps()
-end
+    config = function()
+        setup_gps()
+        setup_lualine()
+    end
+}
 
-m.setup_lualine = function()
+setup_lualine = function()
     local navic = require("nvim-navic")
     require("lualine").setup({
         options = {
@@ -53,7 +56,7 @@ m.setup_lualine = function()
     })
 end
 
-m.setup_gps = function()
+setup_gps = function()
     require("nvim-navic").setup()
 end
 
