@@ -2,7 +2,7 @@ local m = {}
 
 m = {
         "akinsho/bufferline.nvim",
-        tag = "*",
+        version = "*",
         requires = "kyazdani42/nvim-web-devicons",
 
     config = function()
