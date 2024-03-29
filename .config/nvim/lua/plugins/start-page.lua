@@ -4,7 +4,7 @@ m.setup = function(use)
     use({
         "goolord/alpha-nvim",
         requires = {
-            "kyazdani42/nvim-web-devicons",
+            "nvim-tree/nvim-web-devicons",
         },
     })
 
