@@ -6,7 +6,7 @@ m.setup = function(use)
         branch = "v3.x",
         requires = {
             "nvim-lua/plenary.nvim",
-            "kyazdani42/nvim-web-devicons",
+            "nvim-tree/nvim-web-devicons",
             "MunifTanjim/nui.nvim",
         },
     })

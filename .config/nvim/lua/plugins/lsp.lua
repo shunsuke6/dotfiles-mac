@@ -9,7 +9,7 @@ m.setup = function(use)
     use("folke/lsp-colors.nvim")
     use({
         "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
+        requires = "nvim-tree/nvim-web-devicons",
     })
     use({
         "j-hui/fidget.nvim",
