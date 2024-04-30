@@ -1,26 +1,24 @@
 local m = {}
 
-m = { 
-	{"hrsh7th/nvim-cmp"},
-	{"hrsh7th/cmp-buffer"},
-   	{"hrsh7th/cmp-path"},
-   	{"hrsh7th/cmp-cmdline"},
-   	{"hrsh7th/cmp-nvim-lsp-signature-help"},
-   	{"hrsh7th/cmp-nvim-lsp-document-symbol"},
-   	{"hrsh7th/cmp-nvim-lua"},
-   	{"hrsh7th/cmp-emoji"},
-   	{"onsails/lspkind-nvim"},
-   	{"hrsh7th/vim-vsnip"},
-   	{"hrsh7th/cmp-vsnip"},
-   	{"rafamadriz/friendly-snippets"},
+vim.g.completeopt = "menu,menuone,noselect"
 
-    init = function()
-	    vim.g.completeopt = "menu,menuone,noselect"
-    end,
+m = {
+    { "hrsh7th/nvim-cmp" },
+    { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-path" },
+    { "hrsh7th/cmp-cmdline" },
+    { "hrsh7th/cmp-nvim-lsp-signature-help" },
+    { "hrsh7th/cmp-nvim-lsp-document-symbol" },
+    { "hrsh7th/cmp-nvim-lua" },
+    { "hrsh7th/cmp-emoji" },
+    { "onsails/lspkind-nvim" },
+    { "hrsh7th/vim-vsnip" },
+    { "hrsh7th/cmp-vsnip" },
+    { "rafamadriz/friendly-snippets" },
 
     config = function()
-	    setup_lspkind()
-       setup_cmp()
+        setup_lspkind()
+        setup_cmp()
     end,
 }
 
@@ -73,7 +71,6 @@ setup_cmp = function()
         },
         snippet = {
             expand = function(args)
-                -- For vscode snippet.
                 vim.fn["vsnip#anonymous"](args.body)
             end,
         },

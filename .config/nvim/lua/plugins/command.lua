@@ -1,6 +1,6 @@
 local m = {}
 
-m =  {
+m = {
     "mileszs/ack.vim",
 }
 

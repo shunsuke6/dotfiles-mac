@@ -1,30 +1,29 @@
 local m = {}
 
-m =
-{
+m = {
     {
         "nvim-treesitter/nvim-treesitter",
-        run = function()
+        build = function()
             require("nvim-treesitter.install").update({ with_sync = true })
         end,
     },
-    {"nvim-treesitter/nvim-treesitter-textobjects"},
-    {"RRethy/nvim-treesitter-textsubjects"},
-    {"mfussenegger/nvim-ts-hint-textobject"},
-    {"David-Kunz/treesitter-unit"},
-    {"mizlan/iswap.nvim"},
-    {"JoosepAlviste/nvim-ts-context-commentstring"},
-    {"andymass/vim-matchup"},
+    { "nvim-treesitter/nvim-treesitter-textobjects" },
+    { "RRethy/nvim-treesitter-textsubjects" },
+    { "mfussenegger/nvim-ts-hint-textobject" },
+    { "David-Kunz/treesitter-unit" },
+    { "mizlan/iswap.nvim" },
+    { "JoosepAlviste/nvim-ts-context-commentstring" },
+    { "andymass/vim-matchup" },
 
-    {"nvim-treesitter/nvim-treesitter-context"},
-    {"haringsrob/nvim_context_vt"},
+    { "nvim-treesitter/nvim-treesitter-context" },
+    { "haringsrob/nvim_context_vt" },
     {
         "m-demare/hlargs.nvim",
-        requires = {
+        dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
     },
-    {"windwp/nvim-ts-autotag"},
+    { "windwp/nvim-ts-autotag" },
     {
         "HiPhish/rainbow-delimiters.nvim",
         config = function()
@@ -46,14 +45,11 @@ m =
 
     config = function()
         setup_treesitter()
-
-        if not vim.g.vscode then
-            setup_context()
-            setup_context_vt()
-            setup_hlargs()
-            setup_autotag()
-        end
-    end
+        setup_context()
+        setup_context_vt()
+        setup_hlargs()
+        setup_autotag()
+    end,
 }
 
 setup_treesitter = function()

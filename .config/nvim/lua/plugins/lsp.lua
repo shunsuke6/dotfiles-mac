@@ -1,38 +1,167 @@
 local m = {}
 
+lspconfig = {
+    "neovim/nvim-lspconfig",
+    config = function()
+        local mason = require("mason")
+        local mason_lspconfig = require("mason-lspconfig")
+        local lspconfig = require("lspconfig")
+        local capabilities = get_capabilities()
+        local on_attach = on_attach
+        mason.setup()
+        mason_lspconfig.setup()
+        mason_lspconfig.setup_handlers({
+            function(server_name)
+                local serverconfig = lspconfig[server_name]
+                if server_name == "clangd" then
+                    -- c/cpp
+                    setup_lsp_clangd(serverconfig, on_attach)
+                elseif server_name == "rust_analyzer" then
+                    -- rust
+                    setup_lsp_rust_analyzer(serverconfig, on_attach, capabilities)
+                elseif server_name == "jdtls" then -- jdtls is used by nvim-jdtls elseif server_name == "hls" then
+                    -- haskell
+                    setup_lsp_hls(serverconfig, on_attach, capabilities)
+                elseif server_name == "html" then
+                    -- html
+                    setup_lsp_html(serverconfig, on_attach, capabilities)
+                elseif server_name == "jsonls" then
+                    -- json
+                    setup_lsp_jsonls(serverconfig, on_attach, capabilities)
+                elseif server_name == "lua_ls" then
+                    -- lua
+                    setup_lsp_sumneko_lua(serverconfig, on_attach, capabilities)
+                elseif server_name == "tsserver" then
+                    -- javascript/typescript/react
+                    setup_lsp_tsserver(serverconfig, on_attach, capabilities)
+                elseif server_name == "denols" then
+                    -- javascript/typescript/react
+                    setup_lsp_denols(serverconfig, on_attach, capabilities)
+                elseif server_name == "omnisharp" then
+                    -- csharp
+                    setup_lsp_omnisharp(serverconfig, on_attach, capabilities)
+                elseif server_name == "elixirls" then
+                    setup_lsp_elixirls(serverconfig, on_attach, capabilities)
+                    --                elseif server_name == "bash" then
+                    --                    setup_lsp_bash(serverconfig, on_attach, capabilities)
+                else
+                    setup_lsp_any(serverconfig, on_attach, capabilities)
+                end
+            end,
+        })
+    end,
+}
+
+mason = {
+    "williamboman/mason.nvim",
+    config = function()
+	    require("mason").setup({})
+    end
+}
+
+lspsaga = {
+    "tami5/lspsaga.nvim",
+    keys = {
+        { "gh", "<cmd>Lspsaga lsp_finder<CR>", mode = "n", { silent = true, noremap = true } },
+        { "<space>a", "<cmd>Lspsaga code_action<CR>", mode = "n", { silent = true, noremap = true } },
+        { "<space>a", ":<C-u>Lspsaga range_code_action<CR>", mode = "x", { silent = true, noremap = true } },
+        { "K", "<cmd>Lspsaga hover_doc<CR>", mode = "n", { silent = true, noremap = true } },
+        { "<C-k>", "<cmd>Lspsaga signature_help<CR>", mode = "n", { silent = true, noremap = true } },
+        { "<space>r", "<cmd>Lspsaga rename<CR>", mode = "n", { silent = true, noremap = true } },
+        { "<space>d", "<cmd>Lspsaga preview_definition<CR>", mode = "n", { silent = true, noremap = true } },
+        { "<space>e", "<cmd>Lspsaga show_line_diagnostics<CR>", mode = "n", { silent = true, noremap = true } },
+        {
+            "<space>E",
+            [[<cmd>lua require('lspsaga.diagnostic').show_cursor_diagnostics()<CR>]],
+            mode = "n",
+            { silent = true, noremap = true },
+        },
+        { "<space>n", "<cmd>Lspsaga diagnostic_jump_next<CR>", mode = "n", { silent = true, noremap = true } },
+        { "<space>p", "<cmd>Lspsaga diagnostic_jump_prev<CR>", mode = "n", { silent = true, noremap = true } },
+        { "<M-f>", "<cmd>Lspsaga open_floaterm<CR>", mode = "n", { silent = true, noremap = true } },
+    },
+    config = function()
+        require("lspsaga").setup({
+            debug = false,
+            use_saga_diagnostic_sign = true,
+            error_sign = "",
+            warn_sign = "",
+            hint_sign = "",
+            infor_sign = "",
+            diagnostic_header_icon = "   ",
+            code_action_icon = " ",
+            code_action_prompt = {
+                enable = true,
+                sign = true,
+                sign_priority = 40,
+                virtual_text = true,
+            },
+            finder_definition_icon = "  ",
+            finder_reference_icon = "  ",
+            max_preview_lines = 40,
+            finder_action_keys = {
+                open = "o",
+                vsplit = "s",
+                split = "i",
+                quit = "q",
+                scroll_down = "<C-f>",
+                scroll_up = "<C-d>",
+            },
+            code_action_keys = {
+                quit = "q",
+                exec = "<CR>",
+            },
+            rename_action_keys = {
+                quit = "<C-c>",
+                exec = "<CR>",
+            },
+            definition_preview_icon = "  ",
+            border_style = "single",
+            rename_prompt_prefix = "➤",
+            server_filetype_map = {},
+            diagnostic_prefix_format = "%d. ",
+        })
+    end,
+}
+
+lsp_colors = {
+    "folke/lsp-colors.nvim",
+    config = function()
+        require("lsp-colors").setup({
+            Error = "#db4b4b",
+            Warning = "#e0af68",
+            Information = "#0db9d7",
+            Hint = "#10B981",
+        })
+    end,
+}
 m = {
-    {
+    lspconfig,
+    mason,
+    { "williamboman/mason-lspconfig.nvim" },
+    { "hrsh7th/cmp-nvim-lsp" },
+    --    { "tami5/lspsaga.nvim" },
+    lspsaga,
 
-
-    {"neovim/nvim-lspconfig"},
-    {"williamboman/mason.nvim"},
-    {"williamboman/mason-lspconfig.nvim"},
-    {"hrsh7th/cmp-nvim-lsp"},
-    {"tami5/lspsaga.nvim"},
-    {"folke/lsp-colors.nvim"},
+    lsp_colors,
     {
         "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
+        dependencies = "nvim-tree/nvim-web-devicons",
     },
     {
         "j-hui/fidget.nvim",
-        tag = "legacy",
     },
-    {"RRethy/vim-illuminate"},
+    { "RRethy/vim-illuminate" },
 
-config = function()
-
-    
-
-    setup_lsp()
-    setup_lspsaga()
-    setup_lsp_color()
-    setup_trouble()
-    setup_fidget()
-end
-
+    config = function()
+        -- setup_lsp()
+        --     setup_lspsaga()
+        -- setup_lsp_color()
+        setup_trouble()
+        setup_fidget()
+    end,
 }
-}
+
 vim.g.Illuminate_delay = 500
 vim.g.Illuminate_highlightUnderCursor = 0
 
@@ -70,14 +199,14 @@ local function get_clang_capabilities()
     return capabilities
 end
 
-local function setup_lsp_clangd(serverconfig, on_attach)
+function setup_lsp_clangd(serverconfig, on_attach)
     serverconfig.setup({
         on_attach = on_attach,
         capabilities = get_clang_capabilities(),
     })
 end
 
-local function setup_lsp_rust_analyzer(serverconfig, on_attach, capabilities)
+function setup_lsp_rust_analyzer(serverconfig, on_attach, capabilities)
     serverconfig.setup({
         settings = {
             ["rust-analyzer"] = {
@@ -97,7 +226,7 @@ local function setup_lsp_rust_analyzer(serverconfig, on_attach, capabilities)
     })
 end
 
-local function setup_lsp_hls(serverconfig, on_attach, capabilities)
+function setup_lsp_hls(serverconfig, on_attach, capabilities)
     serverconfig.setup({
         settings = {
             haskell = {
@@ -110,7 +239,7 @@ local function setup_lsp_hls(serverconfig, on_attach, capabilities)
     })
 end
 
-local function setup_lsp_html(serverconfig, on_attach, capabilities)
+function setup_lsp_html(serverconfig, on_attach, capabilities)
     serverconfig.setup({
         init_options = {
             provideFormatter = false,
@@ -120,7 +249,7 @@ local function setup_lsp_html(serverconfig, on_attach, capabilities)
     })
 end
 
-local function setup_lsp_jsonls(serverconfig, on_attach, capabilities)
+function setup_lsp_jsonls(serverconfig, on_attach, capabilities)
     serverconfig.setup({
         init_options = {
             provideFormatter = false,
@@ -130,7 +259,7 @@ local function setup_lsp_jsonls(serverconfig, on_attach, capabilities)
     })
 end
 
-local function setup_lsp_sumneko_lua(serverconfig, on_attach, capabilities)
+function setup_lsp_sumneko_lua(serverconfig, on_attach, capabilities)
     serverconfig.setup({
         settings = {
             Lua = {
@@ -141,7 +270,7 @@ local function setup_lsp_sumneko_lua(serverconfig, on_attach, capabilities)
                     },
                 },
                 format = {
-                    enable = false,
+                    enable = true,
                 },
             },
         },
@@ -149,7 +278,7 @@ local function setup_lsp_sumneko_lua(serverconfig, on_attach, capabilities)
         capabilities = capabilities,
     })
 end
-local function setup_lsp_omnisharp(serverconfig, on_attach, capabilities)
+function setup_lsp_omnisharp(serverconfig, on_attach, capabilities)
     serverconfig.setup({
         cmd = { "omnisharp" },
         enable_editorconfig_support = true,
@@ -158,7 +287,7 @@ local function setup_lsp_omnisharp(serverconfig, on_attach, capabilities)
         --capabilities = capabilities,
     })
 end
-local function setup_lsp_tsserver(serverconfig, on_attach, capabilities)
+function setup_lsp_tsserver(serverconfig, on_attach, capabilities)
     local lspconfig = require("lspconfig")
     serverconfig.setup({
         -- Exclude ".git"
@@ -168,7 +297,7 @@ local function setup_lsp_tsserver(serverconfig, on_attach, capabilities)
     })
 end
 
-local function setup_lsp_denols(serverconfig, on_attach, capabilities)
+function setup_lsp_denols(serverconfig, on_attach, capabilities)
     local lspconfig = require("lspconfig")
     local stat = vim.loop.fs_stat(vim.fn.expand("deno.json"))
     local has_deno = stat ~= nil and true or false
@@ -184,7 +313,7 @@ local function setup_lsp_denols(serverconfig, on_attach, capabilities)
     })
 end
 
-local function setup_lsp_elixirls(serverconfig, on_attach, capabilities)
+function setup_lsp_elixirls(serverconfig, on_attach, capabilities)
     local lspconfig = require("lspconfig")
     serverconfig.setup({
         cmd = { "elixir-ls" },
@@ -192,15 +321,17 @@ local function setup_lsp_elixirls(serverconfig, on_attach, capabilities)
         capabilities = capabilities,
     })
 end
-local function setup_lsp_elixirls(serverconfig, on_attach, capabilities)
-    local lspconfig = require("lspconfig")
-    serverconfig.setup({
-        cmd = { "bash-language-server" },
-        on_attach = on_attach,
-        capabilities = capabilities,
-    })
-end
-local function setup_lsp_any(serverconfig, on_attach, capabilities)
+
+-- function setup_lsp_elixirls(serverconfig, on_attach, capabilities)
+-- 	local lspconfig = require("lspconfig")
+-- 	serverconfig.setup({
+-- 		cmd = { "bash-language-server" },
+-- 		on_attach = on_attach,
+-- 		capabilities = capabilities,
+-- 	})
+-- end
+function setup_lsp_any(serverconfig, on_attach, capabilities)
+    print("any")
     serverconfig.setup({
         on_attach = on_attach,
         capabilities = capabilities,
@@ -211,8 +342,8 @@ setup_lsp = function()
     local mason = require("mason")
     local mason_lspconfig = require("mason-lspconfig")
     local lspconfig = require("lspconfig")
-    local capabilities = m.get_capabilities()
-    local on_attach = m.on_attach
+    local capabilities = get_capabilities()
+    local on_attach = on_attach
     mason.setup()
     mason_lspconfig.setup_handlers({
         function(server_name)
@@ -248,8 +379,8 @@ setup_lsp = function()
                 setup_lsp_omnisharp(serverconfig, on_attach, capabilities)
             elseif server_name == "elixirls" then
                 setup_lsp_elixirls(serverconfig, on_attach, capabilities)
-            elseif server_name == "bash" then
-                setup_lsp_bash(serverconfig, on_attach, capabilities)
+                --            elseif server_name == "bash" then
+                --                setup_lsp_bash(serverconfig, on_attach, capabilities)
             else
                 setup_lsp_any(serverconfig, on_attach, capabilities)
             end
@@ -257,57 +388,7 @@ setup_lsp = function()
     })
 end
 
-setup_lspsaga = function()
-    require("lspsaga").setup({
-        debug = false,
-        use_saga_diagnostic_sign = true,
-        error_sign = "",
-        warn_sign = "",
-        hint_sign = "",
-        infor_sign = "",
-        diagnostic_header_icon = "   ",
-        code_action_icon = " ",
-        code_action_prompt = {
-            enable = true,
-            sign = true,
-            sign_priority = 40,
-            virtual_text = true,
-        },
-        finder_definition_icon = "  ",
-        finder_reference_icon = "  ",
-        max_preview_lines = 40,
-        finder_action_keys = {
-            open = "o",
-            vsplit = "s",
-            split = "i",
-            quit = "q",
-            scroll_down = "<C-f>",
-            scroll_up = "<C-d>",
-        },
-        code_action_keys = {
-            quit = "q",
-            exec = "<CR>",
-        },
-        rename_action_keys = {
-            quit = "<C-c>",
-            exec = "<CR>",
-        },
-        definition_preview_icon = "  ",
-        border_style = "single",
-        rename_prompt_prefix = "➤",
-        server_filetype_map = {},
-        diagnostic_prefix_format = "%d. ",
-    })
-end
-
-setup_lsp_color = function()
-    require("lsp-colors").setup({
-        Error = "#db4b4b",
-        Warning = "#e0af68",
-        Information = "#0db9d7",
-        Hint = "#10B981",
-    })
-end
+--setup_lsp_color = function() end
 
 setup_trouble = function()
     require("trouble").setup({
@@ -342,26 +423,10 @@ setup_illuminate = function()
     })
 end
 
-vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, noremap = true })
-vim.keymap.set("n", "<space>a", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true })
-vim.keymap.set("x", "<space>a", ":<C-u>Lspsaga range_code_action<CR>", { silent = true, noremap = true })
-vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true, noremap = true })
 vim.cmd([[nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>]])
 vim.cmd([[nnoremap <silent> <C-d> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>]])
-vim.keymap.set("n", "<C-k>", "<cmd>Lspsaga signature_help<CR>", { silent = true, noremap = true })
-vim.keymap.set("n", "<space>r", "<cmd>Lspsaga rename<CR>", { silent = true, noremap = true })
-vim.keymap.set("n", "<space>d", "<cmd>Lspsaga preview_definition<CR>", { silent = true, noremap = true })
-vim.keymap.set("n", "<space>e", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true, noremap = true })
-vim.keymap.set(
-    "n",
-    "<space>E",
-    [[<cmd>lua require('lspsaga.diagnostic').show_cursor_diagnostics()<CR>]],
-    { silent = true, noremap = true }
-)
-vim.keymap.set("n", "<space>n", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true, noremap = true })
-vim.keymap.set("n", "<space>p", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true, noremap = true })
-vim.keymap.set("n", "<M-f>", "<cmd>Lspsaga open_floaterm<CR>", { silent = true, noremap = true })
 vim.cmd([[tnoremap <silent> <M-f> <C-\><C-n>:Lspsaga close_floaterm<CR>]])
+
 vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<CR>", { silent = true, noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<CR>", { silent = true, noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>xd", "<cmd>Trouble document_diagnostics<CR>", { silent = true, noremap = true })

@@ -1,21 +1,22 @@
 local m = {}
 
 m = {
-	{
-          "nvim-telescope/telescope.nvim", tag = '0.1.0',
-          requires = {
-              "nvim-lua/plenary.nvim",
+    {
+        "nvim-telescope/telescope.nvim",
+        version = "0.1.0",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
         },
-	{
-          "nvim-telescope/telescope-fzf-native.nvim",
-          run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-	},
-	{"nvim-telescope/telescope-ui-select.nvim"},
+        {
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+        },
+        { "nvim-telescope/telescope-ui-select.nvim" },
 
-     config = function()
-         setup_telescope()
-     end
-    }
+        config = function()
+            setup_telescope()
+        end,
+    },
 }
 
 setup_telescope = function()
@@ -53,8 +54,8 @@ setup_telescope = function()
                 override_generic_sorter = true,
                 override_file_sorter = true,
                 case_mode = "smart_case",
-            }
-        }
+            },
+        },
     })
     require("telescope").load_extension("fzf")
     require("telescope").load_extension("notify")
