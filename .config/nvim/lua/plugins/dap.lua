@@ -5,7 +5,7 @@ m.setup = function(use)
     use("mfussenegger/nvim-dap")
     use({
         "rcarriga/nvim-dap-ui",
-        requires = { "mfussenegger/nvim-dap" },
+        requires = { "mfussenegger/nvim-dap","nvim-neotest/nvim-nio" },
     })
     use("theHamsta/nvim-dap-virtual-text")
     use("nvim-telescope/telescope-dap.nvim")
