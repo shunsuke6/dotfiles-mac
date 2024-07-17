@@ -1,7 +1,8 @@
 local m = {}
 
 m = {
-    "nvimtools/none-ls.nvim",
+    -- "nvimtools/none-ls.nvim",
+    "jose-elias-alvarez/null-ls.nvim",
     dependencies = {
         "nvim-lua/plenary.nvim",
     },
@@ -38,7 +39,7 @@ local node_modules_path = "node_modules/.bin"
 local python_venv_path = ".venv/bin"
 local sqlfluff_extra_args = { "--dialect", "postgres" }
 
-has_deno_configuration = function()
+local has_deno_configuration = function()
     local utils = require("null-ls.utils").make_conditional_utils()
     return utils.root_has_file({
         "deno.json",
@@ -234,17 +235,18 @@ setup_null_ls = function()
             -- null_ls.builtins.formatting.phpcsfixer,
 
             -- for html/css/sass/javascript/typescript/react/vue/json/yaml/markdown/graphql
-            -- null_ls.builtins.formatting.deno_fmt.with({
-            -- 	condition = has_deno_configuration,
-            -- }),
-            -- null_ls.builtins.diagnostics.deno_lint.with({
-            -- 	condition = has_deno_configuration,
-            -- }),
+            null_ls.builtins.formatting.deno_fmt.with({
+                condition = has_deno_configuration,
+            }),
+            null_ls.builtins.diagnostics.deno_lint.with({
+                condition = has_deno_configuration,
+            }),
 
             null_ls.builtins.formatting.prettierd.with({
                 prefer_local = node_modules_path,
                 disabled_filetypes = get_filetypes_disable_prettier(),
             }),
+            -- null_ls.builtins.formatting.prettierd,
 
             -- for ruby
             -- be used by solargraph
