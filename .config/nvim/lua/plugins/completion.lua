@@ -1,28 +1,6 @@
 local m = {}
 
-vim.g.completeopt = "menu,menuone,noselect"
-
-m = {
-    { "hrsh7th/nvim-cmp" },
-    { "hrsh7th/cmp-buffer" },
-    { "hrsh7th/cmp-path" },
-    { "hrsh7th/cmp-cmdline" },
-    { "hrsh7th/cmp-nvim-lsp-signature-help" },
-    { "hrsh7th/cmp-nvim-lsp-document-symbol" },
-    { "hrsh7th/cmp-nvim-lua" },
-    { "hrsh7th/cmp-emoji" },
-    { "onsails/lspkind-nvim" },
-    { "hrsh7th/vim-vsnip" },
-    { "hrsh7th/cmp-vsnip" },
-    { "rafamadriz/friendly-snippets" },
-
-    config = function()
-        setup_lspkind()
-        setup_cmp()
-    end,
-}
-
-setup_lspkind = function()
+local setup_lspkind = function()
     require("lspkind").init({
         mode = "symbol_text",
         preset = "codicons",
@@ -56,7 +34,7 @@ setup_lspkind = function()
     })
 end
 
-setup_cmp = function()
+local setup_cmp = function()
     local lspkind = require("lspkind")
     local cmp = require("cmp")
     cmp.setup({
@@ -129,7 +107,31 @@ setup_cmp = function()
         }, {
             { name = "cmdline" },
         }),
+        matching = { disallow_symbol_nonprefix_matching = false },
     })
 end
+
+m = {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+        { "hrsh7th/cmp-buffer" },
+        { "hrsh7th/cmp-path" },
+        { "hrsh7th/cmp-cmdline" },
+        { "hrsh7th/cmp-nvim-lsp-signature-help" },
+        { "hrsh7th/cmp-nvim-lsp-document-symbol" },
+        { "hrsh7th/cmp-nvim-lua" },
+        { "hrsh7th/cmp-emoji" },
+        { "onsails/lspkind-nvim" },
+        { "hrsh7th/vim-vsnip" },
+        { "hrsh7th/cmp-vsnip" },
+        { "rafamadriz/friendly-snippets" },
+    },
+
+    config = function()
+        vim.g.completeopt = "menu,menuone,noselect"
+        setup_lspkind()
+        setup_cmp()
+    end,
+}
 
 return m
