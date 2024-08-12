@@ -1,7 +1,6 @@
 local m = {}
 
-m.setup = function(use)
-    use("jsborjesson/vim-uppercase-sql")
-end
-
+m = {
+    "jsborjesson/vim-uppercase-sql",
+}
 return m

@@ -1,37 +1,7 @@
 local m = {}
 local vsext_path = require("os").getenv("HOME") .. "/dev/vscode"
 
-m.setup = function(use)
-    use("mfussenegger/nvim-dap")
-    use({
-        "rcarriga/nvim-dap-ui",
-        requires = { "mfussenegger/nvim-dap","nvim-neotest/nvim-nio" },
-    })
-    use("theHamsta/nvim-dap-virtual-text")
-    use("nvim-telescope/telescope-dap.nvim")
-    use("jbyuki/one-small-step-for-vimkind")
-    use("mfussenegger/nvim-dap-python")
-    use("suketa/nvim-dap-ruby")
-    use("leoluz/nvim-dap-go")
-
-    m.setup_dap()
-    m.setup_dap_ui()
-    m.setup_dap_virtual_text()
-    m.setup_dap_telescope()
-    m.setup_dap_nlua()
-    m.setup_dap_python()
-    m.setup_dap_ruby()
-    m.setup_dap_php()
-    m.setup_dap_javascript_typescript()
-    m.setup_dap_go()
-    m.setup_dap_haskell()
-    m.setup_dap_dotnet()
-    m.setup_dap_kotlin()
-    m.setup_dap_lldb()
-    m.setup_dap_load_launchjs()
-end
-
-m.setup_dap = function()
+setup_dap = function()
     require("dap")
     vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "", linehl = "", numhl = "" })
     vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "", linehl = "", numhl = "" })
@@ -40,7 +10,7 @@ m.setup_dap = function()
     vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "", linehl = "", numhl = "" })
 end
 
-m.setup_dap_ui = function()
+setup_dap_ui = function()
     local dapui = require("dapui")
     dapui.setup({
         icons = { expanded = "▾", collapsed = "▸" },
@@ -98,7 +68,7 @@ m.setup_dap_ui = function()
     end
 end
 
-m.setup_dap_virtual_text = function()
+setup_dap_virtual_text = function()
     require("nvim-dap-virtual-text").setup({
         enabled = true,
         enabled_commands = true,
@@ -116,11 +86,11 @@ m.setup_dap_virtual_text = function()
     })
 end
 
-m.setup_dap_telescope = function()
+setup_dap_telescope = function()
     require("telescope").load_extension("dap")
 end
 
-m.setup_dap_nlua = function()
+setup_dap_nlua = function()
     local dap = require("dap")
     dap.configurations.lua = {
         {
@@ -147,7 +117,7 @@ m.setup_dap_nlua = function()
     end
 end
 
-m.setup_dap_python = function()
+setup_dap_python = function()
     local dap_python_adapter_path = require("os").getenv("HOME") .. "/.pyenv/shims/python"
     local dap_python = require("dap-python")
     local dap_python_opts = {
@@ -167,13 +137,13 @@ m.setup_dap_python = function()
     dap_python.test_runner = "pytest"
 end
 
-m.setup_dap_ruby = function()
+setup_dap_ruby = function()
     local dap_ruby = require("dap-ruby")
     -- Port is 38698 by default.
     dap_ruby.setup()
 end
 
-m.setup_dap_php = function()
+setup_dap_php = function()
     local dap = require("dap")
     dap.adapters.php = {
         type = "executable",
@@ -191,7 +161,7 @@ m.setup_dap_php = function()
     }
 end
 
-m.setup_dap_javascript_typescript = function()
+setup_dap_javascript_typescript = function()
     local dap = require("dap")
     dap.adapters.node2 = {
         type = "executable",
@@ -254,12 +224,12 @@ m.setup_dap_javascript_typescript = function()
     dap.configurations.typescriptreact = dap.configurations.javascriptreact
 end
 
-m.setup_dap_go = function()
+setup_dap_go = function()
     local dap_go = require("dap-go")
     dap_go.setup()
 end
 
-m.setup_dap_haskell = function()
+setup_dap_haskell = function()
     local dap = require("dap")
     dap.adapters.haskell = {
         type = "executable",
@@ -283,7 +253,7 @@ m.setup_dap_haskell = function()
     }
 end
 
-m.setup_dap_dotnet = function()
+setup_dap_dotnet = function()
     local dap = require("dap")
     dap.adapters.coreclr = {
         type = "executable",
@@ -302,7 +272,7 @@ m.setup_dap_dotnet = function()
     }
 end
 
-m.setup_dap_kotlin = function()
+setup_dap_kotlin = function()
     local dap = require("dap")
     dap.adapters.kotlin = {
         type = "executable",
@@ -322,7 +292,7 @@ m.setup_dap_kotlin = function()
     }
 end
 
-m.setup_dap_lldb = function()
+setup_dap_lldb = function()
     local dap = require("dap")
     dap.adapters.lldb = {
         type = "executable",
@@ -332,8 +302,19 @@ m.setup_dap_lldb = function()
     dap.configurations.cpp = {
         {
             name = "Launch",
+            type = "codelldb",
+            request = "launch",
+            program = function()
+                return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+            end,
+            cwd = "${workspaceFolder}",
+            stopOnEntry = false,
+            args = {},
+        },
+        {
             type = "lldb",
             request = "launch",
+            name = "Launch (lldb)",
             program = function()
                 return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
             end,
@@ -346,7 +327,7 @@ m.setup_dap_lldb = function()
     dap.configurations.rust = dap.configurations.cpp
 end
 
-m.setup_dap_load_launchjs = function()
+setup_dap_load_launchjs = function()
     require("dap.ext.vscode").load_launchjs()
 end
 
@@ -408,4 +389,35 @@ vim.api.nvim_set_keymap(
     { noremap = true, silent = true }
 )
 
+m = {
+    { "mfussenegger/nvim-dap" },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+    },
+    { "theHamsta/nvim-dap-virtual-text" },
+    { "nvim-telescope/telescope-dap.nvim" },
+    { "jbyuki/one-small-step-for-vimkind" },
+    { "mfussenegger/nvim-dap-python" },
+    { "suketa/nvim-dap-ruby" },
+    { "leoluz/nvim-dap-go" },
+
+    config = function()
+        setup_dap()
+        setup_dap_ui()
+        setup_dap_virtual_text()
+        setup_dap_telescope()
+        setup_dap_nlua()
+        setup_dap_python()
+        setup_dap_ruby()
+        setup_dap_php()
+        setup_dap_javascript_typescript()
+        setup_dap_go()
+        setup_dap_haskell()
+        setup_dap_dotnet()
+        setup_dap_kotlin()
+        setup_dap_lldb()
+        setup_dap_load_launchjs()
+    end,
+}
 return m

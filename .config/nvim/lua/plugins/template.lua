@@ -1,7 +1,8 @@
 local m = {}
 
-m.setup = function(use)
-
-end
+m = {
+    config = function()
+    end,
+}
 
 return m

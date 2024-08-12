@@ -1,22 +1,6 @@
 local m = {}
 
-m.setup = function(use)
-    use({
-        "nvim-telescope/telescope.nvim", tag = '0.1.0',
-        requires = {
-            "nvim-lua/plenary.nvim",
-        },
-    })
-    use({
-        "nvim-telescope/telescope-fzf-native.nvim",
-        run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-    })
-    use("nvim-telescope/telescope-ui-select.nvim")
-
-    m.setup_telescope()
-end
-
-m.setup_telescope = function()
+setup_telescope = function()
     -- Key mappings by default.
     -- <C-n>/<Down>	Next item
     -- <C-p>/<Up>	Previous item
@@ -51,8 +35,8 @@ m.setup_telescope = function()
                 override_generic_sorter = true,
                 override_file_sorter = true,
                 case_mode = "smart_case",
-            }
-        }
+            },
+        },
     })
     require("telescope").load_extension("fzf")
     require("telescope").load_extension("notify")
@@ -236,6 +220,7 @@ vim.api.nvim_set_keymap(
     [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]],
     { noremap = true }
 )
+
 vim.api.nvim_set_keymap(
     "n",
     "<leader>ll",
@@ -248,5 +233,24 @@ vim.api.nvim_set_keymap(
     [[<cmd>lua require('telescope.builtin').diagnostics()<CR>]],
     { noremap = true }
 )
+
+m = {
+    {
+        "nvim-telescope/telescope.nvim",
+        version = "0.1.0",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        {
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+        },
+        { "nvim-telescope/telescope-ui-select.nvim" },
+
+        config = function()
+            setup_telescope()
+        end,
+    },
+}
 
 return m

@@ -1,7 +1,7 @@
 local m = {}
 
-m.setup = function(use)
-    use("mtdl9/vim-log-highlighting")
-end
+m = {
+    "mtdl9/vim-log-highlighting",
+}
 
 return m

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # nounset, errexit
 set -ue

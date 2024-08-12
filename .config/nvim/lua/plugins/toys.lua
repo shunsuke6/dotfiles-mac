@@ -1,7 +1,7 @@
 local m = {}
 
-m.setup = function(use)
-    use({ "shunsuke6/nvim-yoshi", opt = true, cmd = { "YoshiEnable" } })
-end
+m = {
+    { "shunsuke6/nvim-yoshi", opt = true, cmd = { "YoshiEnable" } },
+}
 
 return m

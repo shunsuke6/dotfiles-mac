@@ -1,19 +1,6 @@
 local m = {}
 
-m.setup = function(use)
-    use({
-        "pwntester/octo.nvim",
-        requires = {
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim",
-            "nvim-tree/nvim-web-devicons",
-        },
-    })
-
-    m.setup_octo()
-end
-
-m.setup_octo = function()
+setup_octo = function()
     require("octo").setup({
         default_remote = { "upstream", "origin" }, -- order to try remotes
         reaction_viewer_hint_icon = "", -- marker for user reactions
@@ -139,6 +126,9 @@ m.setup_octo = function()
                 toggle_viewed = "<leader><space>", -- toggle viewer viewed state
             },
         },
+        suppress_missing_scope = {
+            projects_v2 = true,
+        },
     })
 end
 
@@ -153,5 +143,18 @@ vim.api.nvim_set_keymap("n", "<leader><leader>hii", "<Cmd>Octo issue search<CR>"
 -- For pull request.
 vim.api.nvim_set_keymap("n", "<leader><leader>hpl", "<Cmd>Octo pr list<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader><leader>hps", "<Cmd>Octo pr search<CR>", { noremap = true, silent = true })
+
+m = {
+    "pwntester/octo.nvim",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
+        "nvim-tree/nvim-web-devicons",
+    },
+
+    config = function()
+        setup_octo()
+    end,
+}
 
 return m

@@ -57,7 +57,7 @@ declare -A packages=(
 check_homebrew
 update_homebrew
 
-for package_name in "${(k)packages[@]}"; do
+for package_name in "${!packages[@]}"; do
   package_description="${packages[$package_name]}"
   install_package "$package_name" "$package_description"
 done

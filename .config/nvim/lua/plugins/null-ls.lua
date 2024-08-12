@@ -1,17 +1,6 @@
 local m = {}
 
-m.setup = function(use)
-    use({
-        "jose-elias-alvarez/null-ls.nvim",
-        requires = {
-            "nvim-lua/plenary.nvim",
-        },
-    })
-
-    m.setup_null_ls()
-end
-
-local lsp_formatting = function(bufnr)
+lsp_formatting = function(bufnr)
     vim.lsp.buf.format({
         filter = function(client)
             if client.name == "jdt.ls" then
@@ -21,7 +10,7 @@ local lsp_formatting = function(bufnr)
             elseif client.name == "tsserver" then
                 -- javascript/typescript use prettier
                 return false
-            elseif client.name == "sumneko_lua" then
+            elseif client.name == "lua_ls" then
                 -- lua use stylua
                 return false
             elseif client.name == "lemminx" then
@@ -46,8 +35,9 @@ local has_deno_configuration = function()
         "deno.jsonc",
     })
 end
-local on_attach = function(client, bufnr)
-    local null_ls_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+on_attach = function(client, bufnr)
+    null_ls_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
     if client.supports_method("textDocument/formatting") then
         vim.api.nvim_clear_autocmds({ group = null_ls_augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
@@ -60,7 +50,7 @@ local on_attach = function(client, bufnr)
     end
 end
 
-local get_filetypes_disable_prettier = function()
+get_filetypes_disable_prettier = function()
     local utils = require("null-ls.utils").make_conditional_utils()
     if has_deno_configuration(utils) then
         return {
@@ -76,7 +66,7 @@ local get_filetypes_disable_prettier = function()
     return {}
 end
 
-local get_ignore_words_when_rust = function()
+get_ignore_words_when_rust = function()
     local utils = require("null-ls.utils").make_conditional_utils()
 
     if utils.root_has_file("Cargo.toml") then
@@ -85,7 +75,7 @@ local get_ignore_words_when_rust = function()
     return {}
 end
 
-m.setup_null_ls = function()
+setup_null_ls = function()
     local null_ls = require("null-ls")
     null_ls.setup({
         on_attach = on_attach,
@@ -93,13 +83,13 @@ m.setup_null_ls = function()
             -- code action
 
             -- for javascript/typescript/react/vue
-            -- NOTE: There is also a lsp version, but still under development.
-            null_ls.builtins.code_actions.eslint.with({
-                prefer_local = node_modules_path,
-            }),
+            -- -- NOTE: There is also a lsp version, but still under development.
+            -- null_ls.builtins.code_actions.eslint.with({
+            -- 	prefer_local = node_modules_path,
+            -- }),
 
             -- for bash
-            null_ls.builtins.code_actions.shellcheck,
+            -- null_ls.builtins.code_actions.shellcheck,
 
             -- diagnostics
 
@@ -118,14 +108,14 @@ m.setup_null_ls = function()
             null_ls.builtins.diagnostics.erb_lint,
 
             -- for javascript/typescript/react/vue
-            null_ls.builtins.diagnostics.eslint.with({
-                prefer_local = node_modules_path,
-            }),
+            -- null_ls.builtins.diagnostics.eslint.with({
+            -- 	prefer_local = node_modules_path,
+            -- }),
 
             -- for python
-            null_ls.builtins.diagnostics.flake8.with({
-                prefer_local = ".venv/bin",
-            }),
+            -- null_ls.builtins.diagnostics.flake8.with({
+            -- 	prefer_local = ".venv/bin",
+            -- }),
 
             -- for go
             -- use lsp version
@@ -135,18 +125,18 @@ m.setup_null_ls = function()
             null_ls.builtins.diagnostics.hadolint,
 
             -- for json
-            null_ls.builtins.diagnostics.jsonlint.with({
-                prefer_local = node_modules_path,
-            }),
+            -- null_ls.builtins.diagnostics.jsonlint.with({
+            -- 	prefer_local = node_modules_path,
+            -- }),
 
             -- for kotlin
             null_ls.builtins.diagnostics.ktlint,
 
             -- for lua
-            null_ls.builtins.diagnostics.luacheck.with({
-                -- for vim
-                extra_args = { "--globals vim" },
-            }),
+            -- null_ls.builtins.diagnostics.luacheck.with({
+            -- 	-- for vim
+            -- 	extra_args = { "--globals vim" },
+            -- }),
 
             -- for markdown
             -- null_ls.builtins.diagnostics.markdownlint.with({
@@ -162,13 +152,13 @@ m.setup_null_ls = function()
 
             -- for bash
             -- be used by bashls
-            null_ls.builtins.diagnostics.shellcheck,
+            -- null_ls.builtins.diagnostics.shellcheck,
 
             -- for css
-            -- NOTE: If switch to the lsp version eslint, should also switch to the lsp version stylelint.
-            null_ls.builtins.diagnostics.stylelint.with({
-                prefer_local = node_modules_path,
-            }),
+            -- -- NOTE: If switch to the lsp version eslint, should also switch to the lsp version stylelint.
+            -- null_ls.builtins.diagnostics.stylelint.with({
+            -- 	prefer_local = node_modules_path,
+            -- }),
 
             -- for sql
             null_ls.builtins.diagnostics.sqlfluff.with({
@@ -202,6 +192,8 @@ m.setup_null_ls = function()
             null_ls.builtins.formatting.clang_format.with({
                 disabled_filetypes = { "cs", "java" },
             }),
+
+            null_ls.builtins.formatting.csharpier,
 
             -- for dart
             -- be used by dartls
@@ -245,6 +237,7 @@ m.setup_null_ls = function()
                 prefer_local = node_modules_path,
                 disabled_filetypes = get_filetypes_disable_prettier(),
             }),
+            -- null_ls.builtins.formatting.prettierd,
 
             -- for ruby
             -- be used by solargraph
@@ -265,19 +258,20 @@ m.setup_null_ls = function()
             -- for lua
             null_ls.builtins.formatting.stylua.with({
                 extra_args = {
-                    "--column-width",
-                    "120",
-                    "--line-endings",
-                    "Unix",
                     "--indent-type",
                     "Spaces",
                     "--indent-width",
                     "4",
-                    "--quote-style",
-                    "AutoPreferDouble",
+                    "--column-width",
+                    "120",
+                    "--line-endings",
+                    "Unix",
                     "--call-parentheses",
                     "Always",
                 },
+
+                -- "--quote-style",
+                -- "AutoPreferDouble",
             }),
 
             -- for xml
@@ -286,12 +280,23 @@ m.setup_null_ls = function()
                 disabled_filetypes = { "html" },
             }),
 
-            null_ls.builtins.formatting.trim_whitespace,
+            -- null_ls.builtins.formatting.trim_whitespace,
 
             null_ls.builtins.formatting.mix,
             null_ls.builtins.diagnostics.credo,
         },
     })
 end
+
+m = {
+    -- "nvimtools/none-ls.nvim",
+    "jose-elias-alvarez/null-ls.nvim",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+    },
+    config = function()
+        setup_null_ls()
+    end,
+}
 
 return m

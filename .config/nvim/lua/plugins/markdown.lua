@@ -1,13 +1,14 @@
 local m = {}
 
-m.setup = function(use)
-    use({
+m = {
+    {
         "iamcco/markdown-preview.nvim",
-        -- Install without yarn or npm.
-        run = function()
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreveiwStop" },
+        ft = { "markdown" },
+        build = function()
             vim.fn["mkdp#util#install"]()
         end,
-    })
+    },
     -- An awesome automatic table creator & formatter allowing one to create neat tables as you type.
     -- Default key mappings.
     -- :TableModeToggle     <Leader>tm
@@ -20,11 +21,10 @@ m.setup = function(use)
     -- <Leader>tdc          mapping to delete the entire current column
     -- <Leader>tic          mapping to insert a column after the cursor
     -- See github for table formulas.
-    use("dhruvasagar/vim-table-mode")
+    { "dhruvasagar/vim-table-mode" },
+}
 
-    vim.g.mkdp_theme = "dark"
-end
-
-vim.api.nvim_set_keymap("n", "gm", "<Cmd>MarkdownPreviewToggle<CR>", { noremap = true, silent = true })
+vim.g.mkdp_theme =
+    "dark", vim.api.nvim_set_keymap("n", "gm", "<Cmd>MarkdownPreviewToggle<CR>", { noremap = true, silent = true })
 
 return m
