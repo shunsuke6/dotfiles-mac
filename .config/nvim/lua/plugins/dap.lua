@@ -1,7 +1,6 @@
 local m = {}
 local vsext_path = require("os").getenv("HOME") .. "/dev/vscode"
 
-
 setup_dap = function()
     require("dap")
     vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "", linehl = "", numhl = "" })
@@ -394,7 +393,7 @@ m = {
     { "mfussenegger/nvim-dap" },
     {
         "rcarriga/nvim-dap-ui",
-        dependencies = { "mfussenegger/nvim-dap" },
+        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
     },
     { "theHamsta/nvim-dap-virtual-text" },
     { "nvim-telescope/telescope-dap.nvim" },
