@@ -45,7 +45,6 @@ m = {
                     if vim.fn.bufname(buf_number) == "[dap-repl]" then
                         return false
                     end
-
                     return true
                 end,
             },
