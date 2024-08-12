@@ -23,7 +23,7 @@ m.on_attach = function(client, bufnr)
 end
 
 m.get_capabilities = function()
-    require("cmp_nvim_lsp").default_capabilities()
+    return require("cmp_nvim_lsp").default_capabilities()
 end
 
 return m

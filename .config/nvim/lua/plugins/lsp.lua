@@ -1,5 +1,7 @@
 local m = {}
 
+local lib_lsp = require("lib.lsp")
+
 vim.g.Illuminate_delay = 500
 vim.g.Illuminate_highlightUnderCursor = 0
 
@@ -24,11 +26,6 @@ g_on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>q", "lua vim.lsp.diagnostic.set_qflist()", opts)
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
 end
-
-get_capabilities = function()
-require("cmp_nvim_lsp").default_capabilities()
-end
-
 
 local mason = {
     "williamboman/mason.nvim",
@@ -191,8 +188,7 @@ local lspconfig = {
         local mason_lspconfig = require("mason-lspconfig")
         local lspconfig = require("lspconfig")
         -- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-	local lib_lsp = require("lib.lsp")
-        local capabilities =  lib_lsp.get_capabilities
+        local capabilities = lib_lsp.get_capabilities()
         local on_attach = lib_lsp.on_attach
         mason_lspconfig.setup({})
         mason_lspconfig.setup_handlers({
