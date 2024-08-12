@@ -1,37 +1,6 @@
 local m = {}
 local vsext_path = require("os").getenv("HOME") .. "/dev/vscode"
 
-m = {
-    { "mfussenegger/nvim-dap" },
-    {
-        "rcarriga/nvim-dap-ui",
-        dependencies = { "mfussenegger/nvim-dap" },
-    },
-    { "theHamsta/nvim-dap-virtual-text" },
-    { "nvim-telescope/telescope-dap.nvim" },
-    { "jbyuki/one-small-step-for-vimkind" },
-    { "mfussenegger/nvim-dap-python" },
-    { "suketa/nvim-dap-ruby" },
-    { "leoluz/nvim-dap-go" },
-
-    config = function()
-        setup_dap()
-        setup_dap_ui()
-        setup_dap_virtual_text()
-        setup_dap_telescope()
-        setup_dap_nlua()
-        setup_dap_python()
-        setup_dap_ruby()
-        setup_dap_php()
-        setup_dap_javascript_typescript()
-        setup_dap_go()
-        setup_dap_haskell()
-        setup_dap_dotnet()
-        setup_dap_kotlin()
-        setup_dap_lldb()
-        setup_dap_load_launchjs()
-    end,
-}
 
 setup_dap = function()
     require("dap")
@@ -334,8 +303,19 @@ setup_dap_lldb = function()
     dap.configurations.cpp = {
         {
             name = "Launch",
+            type = "codelldb",
+            request = "launch",
+            program = function()
+                return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+            end,
+            cwd = "${workspaceFolder}",
+            stopOnEntry = false,
+            args = {},
+        },
+        {
             type = "lldb",
             request = "launch",
+            name = "Launch (lldb)",
             program = function()
                 return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
             end,
@@ -410,4 +390,35 @@ vim.api.nvim_set_keymap(
     { noremap = true, silent = true }
 )
 
+m = {
+    { "mfussenegger/nvim-dap" },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = { "mfussenegger/nvim-dap" },
+    },
+    { "theHamsta/nvim-dap-virtual-text" },
+    { "nvim-telescope/telescope-dap.nvim" },
+    { "jbyuki/one-small-step-for-vimkind" },
+    { "mfussenegger/nvim-dap-python" },
+    { "suketa/nvim-dap-ruby" },
+    { "leoluz/nvim-dap-go" },
+
+    config = function()
+        setup_dap()
+        setup_dap_ui()
+        setup_dap_virtual_text()
+        setup_dap_telescope()
+        setup_dap_nlua()
+        setup_dap_python()
+        setup_dap_ruby()
+        setup_dap_php()
+        setup_dap_javascript_typescript()
+        setup_dap_go()
+        setup_dap_haskell()
+        setup_dap_dotnet()
+        setup_dap_kotlin()
+        setup_dap_lldb()
+        setup_dap_load_launchjs()
+    end,
+}
 return m

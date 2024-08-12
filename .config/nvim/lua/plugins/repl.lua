@@ -1,12 +1,6 @@
 local m = {}
 
-m = {
-    sniprun,
-    iron,
-}
-
-sniprun = 
-{
+local sniprun = {
     "michaelb/sniprun",
     build = "bash ./install.sh",
     key = {
@@ -36,7 +30,7 @@ sniprun =
     end,
 }
 
-iron = {
+local iron = {
     "hkupty/iron.nvim",
     config = function()
         local iron = require("iron.core")
@@ -47,13 +41,13 @@ iron = {
                         command = { "zsh" },
                     },
                 },
-                repl_open_cmd = require("iron.view").curry.right(50),
+                repl_open_cmd = require("iron.view").right(50),
             },
             keymaps = {
                 send_motion = "<leader>rs",
                 visual_send = "<leader>rs",
                 send_line = "<leader>rl",
-                repeat_cmd = "<leader>r.",
+                send_mark = "<leader>r.",
                 cr = "<leader>r<cr>",
                 interrupt = "<leader>r<space>",
                 exit = "<leader>rq",
@@ -61,6 +55,10 @@ iron = {
             },
         })
     end,
+}
+m = {
+    sniprun,
+    iron,
 }
 
 return m

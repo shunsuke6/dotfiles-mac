@@ -1,16 +1,5 @@
 local m = {}
 
-m = {
-    -- "nvimtools/none-ls.nvim",
-    "jose-elias-alvarez/null-ls.nvim",
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-    },
-    config = function()
-        setup_null_ls()
-    end,
-}
-
 lsp_formatting = function(bufnr)
     vim.lsp.buf.format({
         filter = function(client)
@@ -204,6 +193,8 @@ setup_null_ls = function()
                 disabled_filetypes = { "cs", "java" },
             }),
 
+            null_ls.builtins.formatting.csharpier,
+
             -- for dart
             -- be used by dartls
             -- null_ls.builtins.formatting.dart_format,
@@ -254,7 +245,7 @@ setup_null_ls = function()
 
             -- for rust
             -- be used by rust_analyzer
-            -- null_ls.builtins.formatting.rustfmt,
+            null_ls.builtins.formatting.rustfmt,
 
             -- for bash
             null_ls.builtins.formatting.shfmt,
@@ -296,5 +287,16 @@ setup_null_ls = function()
         },
     })
 end
+
+m = {
+    -- "nvimtools/none-ls.nvim",
+    "jose-elias-alvarez/null-ls.nvim",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+    },
+    config = function()
+        setup_null_ls()
+    end,
+}
 
 return m

@@ -76,37 +76,4 @@ m = {
     end,
 }
 
-setup_sidebar = function()
-    -- Key mappings by default.
-    -- git
-    -- e	hovering filename	        open file in the previous window
-    -- diagnostics
-    -- e	hovering diagnostic             message	open file in the previous window at the diagnostic position
-    -- t	hovering filename	        toggle collapse on the group
-    -- todos
-    -- e	hovering todo location	        open file in the previous window at the todo position
-    -- t	hovering the group	        toggle collapse on the group
-    -- containers
-    -- e	hovering a container location	open a new terminal and attach to the container with
-    --                                      	docker exec -it <container id> ${config.containers.attach_shell}
-    -- buffers
-    -- d	hovering an item	        close the identified buffer
-    -- e	hovering an item	        open the identified buffer in a window
-    -- w	hovering an item	        save the identified buffer
-    -- files
-    -- d	hovering an item	        delete file/folder
-    -- y	hovering an item	        yank/copy a file/folder
-    -- x	hovering an item	        cut a file/folder
-    -- p	hovering an item	        paste a file/folder
-    -- c	hovering an item	        create a new file
-    -- e	hovering an item	        open the current file/folder
-    -- r	hovering an item	        rename file/folder
-    -- u	hovering the section	        undo operation
-    -- <C-r>	hovering the section	        redo operation
-    -- <CR>	hovering an item	        open file/folder
-    -- symbols
-    -- t	hovering an item	        toggle group
-    -- e	hovering an item	        open location
-end
-
 return m

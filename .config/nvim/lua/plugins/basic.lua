@@ -3,8 +3,8 @@ local m = {}
 local hop = {
     "phaazon/hop.nvim",
     keys = {
-        { "<leader>", "<cmd>lua require('hop').hint_words()<CR>", mode = "n" },
-        { "<leader>", "<cmd>lua require('hop').hint_words()<CR>", mode = "x" },
+        { "f", "<cmd>lua require('hop').hint_words()<CR>", mode = "n" },
+        { "f", "<cmd>lua require('hop').hint_words()<CR>", mode = "x" },
     },
     config = function()
         require("hop").setup()
@@ -104,7 +104,6 @@ if not vim.g.vscode then
         hlslens,
         autopairs,
     }
-
     for _, v in ipairs(m2) do
         table.insert(m, v)
     end
