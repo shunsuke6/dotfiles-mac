@@ -241,13 +241,13 @@ local lspconfig = {
 local lspsaga = {
     "nvimdev/lspsaga.nvim",
     keys = {
-        { mode = "n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, noremap = true } },
+        { mode = "n", "gh", "<cmd>Lspsaga finder<CR>", { silent = true, noremap = true } },
         { mode = "n", "<space>a", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true } },
         { mode = "x", "<space>a", ":<C-u>Lspsaga range_code_action<CR>", { silent = true, noremap = true } },
         { mode = "n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true, noremap = true } },
-        { mode = "n", "<C-k>", "<cmd>Lspsaga signature_help<CR>", { silent = true, noremap = true } },
+        { mode = "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, noremap = true } },
         { mode = "n", "<space>r", "<cmd>Lspsaga rename<CR>", { silent = true, noremap = true } },
-        { mode = "n", "<space>d", "<cmd>Lspsaga preview_definition<CR>", { silent = true, noremap = true } },
+        { mode = "n", "<space>d", "<cmd>Lspsaga peek_definition<CR>", { silent = true, noremap = true } },
         { mode = "n", "<space>e", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true, noremap = true } },
         {
             mode = "n",
@@ -257,7 +257,7 @@ local lspsaga = {
         },
         { mode = "n", "<space>n", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true, noremap = true } },
         { mode = "n", "<space>p", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true, noremap = true } },
-        { mode = "n", "<M-f>", "<cmd>Lspsaga open_floaterm<CR>", { silent = true, noremap = true } },
+        { mode = "n", "<M-f>", "<cmd>Lspsaga term_toggle<CR>", { silent = true, noremap = true } },
     },
     config = function()
         require("lspsaga").setup({
