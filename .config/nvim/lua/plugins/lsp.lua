@@ -328,8 +328,7 @@ local trouble = {
     cmd = "Trouble",
     keys = {
         { mode = "n", "<leader>xx", "<cmd>Trouble<CR>", { silent = true, noremap = true } },
-        { mode = "n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<CR>", { silent = true, noremap = true } },
-        { mode = "n", "<leader>xd", "<cmd>Trouble document_diagnostics<CR>", { silent = true, noremap = true } },
+        { mode = "n", "<leader>xd", "<cmd>Trouble diagnostics toggle<CR>", { silent = true, noremap = true } },
         { mode = "n", "gr", "<cmd>Trouble lsp_references<CR>", { silent = true, noremap = true } },
     },
     config = function()
