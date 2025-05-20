@@ -3,6 +3,7 @@ m = {
     "akinsho/bufferline.nvim",
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
+    event = "VeryLazy",
     keys = {
         { "<leader>n", "<Cmd>BufferLineCycleNext<CR>", mode = "n", { noremap = true, silent = true } },
         { "<leader>p", "<Cmd>BufferLineCyclePrev<CR>", mode = "n", { noremap = true, silent = true } },
