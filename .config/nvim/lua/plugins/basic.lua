@@ -34,10 +34,10 @@ local vim_sandwich = {
 local comment = {
     "numToStr/Comment.nvim",
     opts = {
-        -- 	pre_hook = function()
-        -- 		return require("ts_context_commentstring.ingegrations.comment_nvim").create_pre_hoook()
-        -- 	end,
-        -- 	post_hook = nil,
+            -- pre_hook = function()
+            --     return require("ts_context_commentstring.ingegrations.comment_nvim").create_pre_hoook()
+            -- end,
+            -- post_hook = nil,
     },
     lazy = false,
 }
