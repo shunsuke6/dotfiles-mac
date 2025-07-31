@@ -3,6 +3,7 @@ local function get_install_path(package_name)
     return mason_registry.get_package(package_name):get_install_path()
 end
 local jdtls_path = get_install_path("jdtls")
+
 local jdtls_jar_path = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
 local jdtls_config_path = jdtls_path .. "/config_mac"
 local lombok_path = jdtls_path .. "/lombok.jar"
@@ -42,10 +43,10 @@ local cmd = {
 
 local root_markers = { "mvnw", "gradlew", "pom.xml" }
 local root_dir = require("jdtls.setup").find_root(root_markers)
-local capabilities = require("plugins.lsp").get_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local function on_attach(client, bufnr)
-    require("plugins.lsp").on_attach(client, bufnr)
+    -- require("plugins.lsp").on_attach(client, bufnr)
     require("jdtls").setup_dap({
         hotcodereplace = "auto",
         config_overrides = {
@@ -70,13 +71,13 @@ end
 local config = {
     cmd = cmd,
     root_dir = root_dir,
-    settings = {
-        java = {},
-    },
+    -- settings = {
+    --     java = {},
+    -- },
     init_options = {
         bundles = bundles,
     },
-    capabilities = capabilities,
+    -- capabilities = capabilities,
     on_attach = on_attach,
 }
 
