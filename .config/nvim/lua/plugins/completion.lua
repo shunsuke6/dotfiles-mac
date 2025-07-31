@@ -58,7 +58,7 @@ local setup_cmp = function()
             -- <C-b> is tmux key binding.
             ["<C-d>"] = cmp.mapping.scroll_docs(-4),
             ["<C-f>"] = cmp.mapping.scroll_docs(4),
-            ["<C-Space>"] = cmp.mapping.complete(),
+            ["<C-S-Space>"] = cmp.mapping.complete(),
             ["<C-e>"] = cmp.mapping.close(),
             ["<CR>"] = cmp.mapping.confirm({
                 behavior = cmp.ConfirmBehavior.Replace,
