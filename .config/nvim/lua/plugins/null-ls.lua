@@ -28,11 +28,18 @@ local node_modules_path = "node_modules/.bin"
 local python_venv_path = ".venv/bin"
 local sqlfluff_extra_args = { "--dialect", "postgres" }
 
-local has_deno_configuration = function()
+-- local has_deno_configuration = function()
+--     local utils = require("null-ls.utils").make_conditional_utils()
+--     return utils.root_has_file({
+--         "deno.json",
+--         "deno.jsonc",
+--     })
+-- end
+
+local has_biome_configuration = function()
     local utils = require("null-ls.utils").make_conditional_utils()
     return utils.root_has_file({
-        "deno.json",
-        "deno.jsonc",
+        "biome.json",
     })
 end
 
@@ -52,13 +59,13 @@ end
 
 get_filetypes_disable_prettier = function()
     local utils = require("null-ls.utils").make_conditional_utils()
-    if has_deno_configuration(utils) then
+    -- if has_deno_configuration(utils) then
+    if has_biome_configuration(utils) then
         return {
             "javascript",
             "javascriptreact",
             "json",
             "jsonc",
-            "markdown",
             "typescript",
             "typescriptreact",
         }
@@ -226,12 +233,13 @@ setup_null_ls = function()
             -- null_ls.builtins.formatting.phpcsfixer,
 
             -- for html/css/sass/javascript/typescript/react/vue/json/yaml/markdown/graphql
-            null_ls.builtins.formatting.deno_fmt.with({
-                condition = has_deno_configuration,
-            }),
-            null_ls.builtins.diagnostics.deno_lint.with({
-                condition = has_deno_configuration,
-            }),
+            -- null_ls.builtins.formatting.deno_fmt.with({
+            --     condition = has_deno_configuration,
+            -- }),
+            -- null_ls.builtins.diagnostics.deno_lint.with({
+            --     condition = has_deno_configuration,
+            -- }),
+            null_ls.builtins.formatting.biome,
 
             null_ls.builtins.formatting.prettierd.with({
                 prefer_local = node_modules_path,
@@ -245,7 +253,7 @@ setup_null_ls = function()
 
             -- for rust
             -- be used by rust_analyzer
-            null_ls.builtins.formatting.rustfmt,
+            -- null_ls.builtins.formatting.rustfmt,
 
             -- for bash
             null_ls.builtins.formatting.shfmt,
@@ -289,8 +297,8 @@ setup_null_ls = function()
 end
 
 m = {
-    -- "nvimtools/none-ls.nvim",
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
+    -- "jose-elias-alvarez/null-ls.nvim",
     dependencies = {
         "nvim-lua/plenary.nvim",
     },
