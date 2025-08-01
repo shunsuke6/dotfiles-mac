@@ -2,16 +2,18 @@ local m = {}
 
 local lualine = {
     "nvim-lualine/lualine.nvim",
-    dependencies = {
-        "nvim-tree/nvim-web-devicons",
-        opt = true,
-    },
+    dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
     config = function()
-        local navic = require("nvim-navic")
         require("lualine").setup({
             options = {
                 theme = "nightfox",
+                refresh = {
+                    statusline = 200,
+                    tabline = 500,
+                    winbar = 300,
+                },
             },
+            always_divide_middle = true,
             sections = {
                 lualine_a = {
                     "mode",
@@ -23,7 +25,8 @@ local lualine = {
                 },
                 lualine_c = {
                     "filename",
-                    { navic.get_location, cond = navic.is_available },
+                    "navic",
+                    -- { navic.get_location, cond = navic.is_available },
                 },
                 lualine_x = {
                     "encoding",
@@ -44,10 +47,15 @@ local lualine = {
 local navic = {
     "SmiteshP/nvim-navic",
     dependencies = {
-        "nvim-treesitter/nvim-treesitter",
+        "neovim/nvim-lspconfig",
     },
     config = function()
-        require("nvim-navic").setup()
+        require("nvim-navic").setup({
+            lsp = {
+                auto_attach = true,
+            },
+            highlight = true,
+        })
     end,
 }
 
