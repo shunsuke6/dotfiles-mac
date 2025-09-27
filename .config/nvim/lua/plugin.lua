@@ -46,4 +46,5 @@ require("lazy").setup({
     require("plugins.null-ls"),
     --    require("plugins.toys"),
     require("plugins.copilot"),
+    require("plugins.codecompanion"),
 })
