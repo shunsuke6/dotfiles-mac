@@ -190,8 +190,7 @@ local lspconfig = {
         -- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
         local capabilities = lib_lsp.get_capabilities()
         local on_attach = lib_lsp.on_attach
-        mason_lspconfig.setup({})
-        mason_lspconfig.setup_handlers({
+        mason_lspconfig.setup({
             ["clangd"] = function()
                 setup_lsp_clangd(lspconfig["cland"], on_attach)
             end,
