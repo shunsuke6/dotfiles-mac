@@ -3,8 +3,8 @@ local m = {}
 local hop = {
     "phaazon/hop.nvim",
     keys = {
-        { "f", "<cmd>lua require('hop').hint_words()<CR>", mode = "n" },
-        { "f", "<cmd>lua require('hop').hint_words()<CR>", mode = "x" },
+        { "<leader>m", "<cmd>lua require('hop').hint_words()<CR>", mode = "n" },
+        { "<leader>m", "<cmd>lua require('hop').hint_words()<CR>", mode = "x" },
     },
     config = function()
         require("hop").setup()
@@ -34,10 +34,10 @@ local vim_sandwich = {
 local comment = {
     "numToStr/Comment.nvim",
     opts = {
-            -- pre_hook = function()
-            --     return require("ts_context_commentstring.ingegrations.comment_nvim").create_pre_hoook()
-            -- end,
-            -- post_hook = nil,
+        -- pre_hook = function()
+        --     return require("ts_context_commentstring.ingegrations.comment_nvim").create_pre_hoook()
+        -- end,
+        -- post_hook = nil,
     },
     lazy = false,
 }
