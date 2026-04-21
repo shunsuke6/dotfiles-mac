@@ -24,12 +24,6 @@ local dap = {
         { mode = "n", "<F11>", "<Cmd>lua require'dap'.step_into()<CR>", { noremap = true, silent = true } },
         { mode = "n", "<S-F11>", "<Cmd>lua require'dap'.step_out()<CR>", { noremap = true, silent = true } },
         { mode = "n", "<F12>", "<Cmd>lua require'dap'.repl.open()<CR>", { noremap = true, silent = true } },
-        {
-            mode = "n",
-            "<S-F12>",
-            "<Cmd>lua require'dap.ext.vscode'.load_launchjs()<CR>",
-            { noremap = true, silent = true },
-        },
     },
     config = function()
         require("dap")
@@ -45,7 +39,6 @@ local dap = {
         dap_dotnet()
         dap_kotlin()
         dap_lldb()
-        dap_load_launchjs()
     end,
 }
 
@@ -251,10 +244,6 @@ dap_lldb = function()
     }
     dap.configurations.c = dap.configurations.cpp
     dap.configurations.rust = dap.configurations.cpp
-end
-
-dap_load_launchjs = function()
-    require("dap.ext.vscode").load_launchjs()
 end
 
 local dap_ui = {
