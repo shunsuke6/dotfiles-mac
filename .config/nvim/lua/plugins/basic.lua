@@ -13,6 +13,7 @@ local hop = {
 
 local quick_scope = {
     "unblevable/quick-scope",
+    lazy = false,
     init = function()
         -- f/t is forward search, F/T is backward search, t version is cursorred before the selected character.
         vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
