@@ -10,7 +10,7 @@ m = {
 			chat = {
 				adapter = {
 					name = "copilot",
-					model = "claude-sonnet-4.5",
+					model = "claude-sonnet-5",
 				},
 			},
 		},
@@ -19,17 +19,6 @@ m = {
 		},
 
 		-- TODO: setup acp
-		-- adapters = {
-		--     acp = {
-		--         gemini_cli = function()
-		--             return require("codecompanion.adapters").extend("gemini_cli", {
-		--                 env = {
-		--                     api_key = "",
-		--                 },
-		--             })
-		--         end,
-		--     },
-		-- },
 	},
 }
 
