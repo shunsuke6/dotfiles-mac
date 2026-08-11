@@ -27,6 +27,11 @@ end
 local node_modules_path = "node_modules/.bin"
 local python_venv_path = ".venv/bin"
 local sqlfluff_extra_args = { "--dialect", "postgres" }
+local disable_format_marker = ".disable-null-ls-format"
+
+local is_format_on_save_disabled = function(bufnr)
+    return vim.fs.root(bufnr, { disable_format_marker }) ~= nil
+end
 
 -- local has_deno_configuration = function()
 --     local utils = require("null-ls.utils").make_conditional_utils()
@@ -51,6 +56,10 @@ on_attach = function(client, bufnr)
             group = null_ls_augroup,
             buffer = bufnr,
             callback = function()
+                if is_format_on_save_disabled(bufnr) then
+                    return
+                end
+
                 lsp_formatting(bufnr)
             end,
         })
