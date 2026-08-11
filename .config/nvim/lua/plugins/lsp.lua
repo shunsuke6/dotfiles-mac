@@ -204,6 +204,16 @@ local lspconfig = {
             function(server_name)
                 lspconfig[server_name].setup({ capabilities = capabilities, on_attach = on_attach })
             end,
+            -- javascript/typescript/react
+            ["tsserver"] = function()
+                setup_lsp_tsserver(serverconfig, on_attach, capabilities)
+            end,
+            ["biome"] = function()
+                lspconfig["biome"].setup({
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                })
+            end,
 
             -- elseif server_name == "jdtls" then -- jdtls is used by nvim-jdtls elseif server_name == "hls" then
             --     -- haskell
