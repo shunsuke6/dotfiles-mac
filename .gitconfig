@@ -1,3 +1,15 @@
 [user]
     email = snsk.syk.gtobzz@gmail.com
     name = shunsuke6
+    signingkey = 253A01FBA351F3EF
+
+[commit]
+    gpgsign = true
+
+[include]
+    path = ~/.gitconfig.local
+[core]
+    excludesfile = ~/.config/.gitignore_global
+
+[init]
+    defaultBranch = main
