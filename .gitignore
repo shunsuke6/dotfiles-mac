@@ -10,7 +10,8 @@
 
 # install script
 !/install.sh
-!/app-Install.sh
+!/app-install.sh
+!/appinstall.sh
 
 # vscode
 !/.vscode/
