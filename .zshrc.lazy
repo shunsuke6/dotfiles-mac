@@ -17,7 +17,7 @@ alias gd='git diff | git-split-diffs --color | less -RFX'
 # PATH
 
 # FLUTTER
-export FLUTTER_ROOT="$(asdf where flutter)"
+export FLUTTER_ROOT="$(mise where flutter)"
 # Java
 export JAVA_WORKSPACE="$HOME/.workspace"
 # llvm

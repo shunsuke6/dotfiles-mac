@@ -33,7 +33,6 @@ zinit light zdharma-continuum/zinit-annex-as-monitor
 zinit light zdharma-continuum/zinit-annex-bin-gem-node
 zinit light zdharma-continuum/zinit-annex-patch-dl
 zinit light zdharma-continuum/zinit-annex-rust
-zinit light asdf-vm/asdf
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
@@ -71,8 +70,6 @@ if [[ ! -d $HOME/.cargo ]]; then
 fi
 [[ ! -f $HOME/.cargo/env ]] || source "$HOME/.cargo/env"
 
-[[ ! -f $HOME/.asdf/plugins/dotnet/set-dotnet-home.zsh ]] || \
-    source "$HOME/.asdf/plugins/dotnet/set-dotnet-home.zsh"
 
 #######################################
 # Generics
@@ -94,8 +91,6 @@ zstyle ':zle:*' word-style unspecified
 ########################################
 # Completions
 # asdf
-fpath=(${ASDF_DIR}/completions $fpath)
-. $HOME/.asdf/asdf.sh
 # zfunc
 [[ -d $HOME/.zfunc ]] || mkdir ~/.zfunc
 if [[ ! -f $HOME/.zfunc/_poetry ]]; then
@@ -185,3 +180,4 @@ export GPG_TTY="$TTY"
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(~/.local/bin/mise activate zsh)"
