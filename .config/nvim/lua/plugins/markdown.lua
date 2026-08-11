@@ -8,16 +8,7 @@ local markdown_preview = {
 	end,
 	keys = { { "gm", "<Cmd>MarkdownPreviewToggle<CR>", mode = "n", { noremap = true, silent = true } } },
 }
--- local markview = {
--- 	"OXY2DEV/markview.nvim",
--- 	lazy = false,
--- 	opts = {
--- 		preview = {
--- 			map_gx = false, -- disable auto mapping (used by NeoTree)
--- 		},
--- 	},
--- }
-local rende_md = {
+local render_md = {
 	"MeanderingProgrammer/render-markdown.nvim",
 	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
 	-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
@@ -25,6 +16,19 @@ local rende_md = {
 	---@module 'render-markdown'
 	---@type render.md.UserConfig
 	opts = {},
+}
+
+local img_clip = {
+	"HakonHarnes/img-clip.nvim",
+	event = "VeryLazy",
+	opts = {
+		-- add options here
+		-- or leave it empty to use the default settings
+	},
+	keys = {
+		-- suggested keymap
+		{ "<leader><leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+	},
 }
 
 m = {
@@ -41,9 +45,9 @@ m = {
 	-- <Leader>tic          mapping to insert a column after the cursor
 	-- See github for table formulas.
 	markdown_preview,
-	-- markview,
-	rende_md,
+	render_md,
 	{ "dhruvasagar/vim-table-mode" },
+	img_clip,
 }
 
 return m
