@@ -149,22 +149,22 @@ setopt extended_glob
 
 ########################################
 # tmux
-if [[ -z "$TMUX" && ! -z "$PS1" && $TERM_PROGRAM != "vscode" ]]; then
-    PERCOL="fzf"
-    ID="$(tmux list-sessions 2>/dev/null)"
-    if [[ -z "$ID" ]]; then
-        tmux new-session
-    else
-        CREATE_NEW_SESSION="Create New Session"
-        ID="$ID\n${CREATE_NEW_SESSION}:"
-        ID="`echo $ID | $PERCOL | cut -d: -f1`"
-        if [[ "$ID" = "${CREATE_NEW_SESSION}" ]]; then
-            tmux new-session
-        elif [[ -n "$ID" ]]; then
-            tmux attach-session -t "$ID"
-        fi
-    fi
-fi
+# if [[ -z "$TMUX" && ! -z "$PS1" && $TERM_PROGRAM != "vscode" ]]; then
+#     PERCOL="fzf"
+#     ID="$(tmux list-sessions 2>/dev/null)"
+#     if [[ -z "$ID" ]]; then
+#         tmux new-session
+#     else
+#         CREATE_NEW_SESSION="Create New Session"
+#         ID="$ID\n${CREATE_NEW_SESSION}:"
+#         ID="`echo $ID | $PERCOL | cut -d: -f1`"
+#         if [[ "$ID" = "${CREATE_NEW_SESSION}" ]]; then
+#             tmux new-session
+#         elif [[ -n "$ID" ]]; then
+#             tmux attach-session -t "$ID"
+#         fi
+#     fi
+# fi
 
 ########################################
 # lazy alias path
