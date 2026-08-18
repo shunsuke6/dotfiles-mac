@@ -104,19 +104,12 @@ zoxide                                     = "latest"
 
 [settings]
 experimental                        = true
-python.compile                      = true
 fetch_remote_versions_timeout       = "60s"
 http_timeout                        = "60s"
 idiomatic_version_file_enable_tools = []
 
-    [settings.npm]
-    bun = true
+[settings.npm]
+package_manager = "bun"
 
-    [settings.cargo]
-    binstall = true
-
-    [settings.pipx]
-    uvx = true
-
-    [settings.aqua]
-    github_attestations = false
+[settings.python]
+compile = false
