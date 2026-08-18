@@ -252,7 +252,7 @@ local lspsaga = {
     keys = {
         { mode = "n", "gh", "<cmd>Lspsaga finder<CR>", { silent = true, noremap = true } },
         { mode = "n", "<space>a", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true } },
-        { mode = "x", "<space>a", ":<C-u>Lspsaga range_code_action<CR>", { silent = true, noremap = true } },
+        { mode = "x", "<space>a", ":<C-u>Lspsaga code_action<CR>", { silent = true, noremap = true } },
         { mode = "n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true, noremap = true } },
         { mode = "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, noremap = true } },
         { mode = "n", "<space>r", "<cmd>Lspsaga rename<CR>", { silent = true, noremap = true } },
@@ -261,7 +261,7 @@ local lspsaga = {
         {
             mode = "n",
             "<space>E",
-            [[<cmd>lua require('lspsaga.diagnostic').show_cursor_diagnostics()<CR>]],
+            "<cmd>Lspsaga show_cursor_diagnostics<CR>",
             { silent = true, noremap = true },
         },
         { mode = "n", "<space>n", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true, noremap = true } },
@@ -270,44 +270,40 @@ local lspsaga = {
     },
     config = function()
         require("lspsaga").setup({
-            debug = false,
-            use_saga_diagnostic_sign = true,
-            error_sign = "",
-            warn_sign = "",
-            hint_sign = "",
-            infor_sign = "",
-            diagnostic_header_icon = "   ",
-            code_action_icon = " ",
-            code_action_prompt = {
+            ui = {
+                border = "single",
+            },
+            lightbulb = {
                 enable = true,
                 sign = true,
                 sign_priority = 40,
                 virtual_text = true,
             },
-            finder_definition_icon = "  ",
-            finder_reference_icon = "  ",
-            max_preview_lines = 40,
-            finder_action_keys = {
-                open = "o",
-                vsplit = "s",
-                split = "i",
-                quit = "q",
+            scroll_preview = {
                 scroll_down = "<C-f>",
                 scroll_up = "<C-d>",
             },
-            code_action_keys = {
-                quit = "q",
-                exec = "<CR>",
+            finder = {
+                max_height = 0.5,
+                keys = {
+                    toggle_or_open = "o",
+                    vsplit = "s",
+                    split = "i",
+                    quit = "q",
+                },
             },
-            rename_action_keys = {
-                quit = "<C-c>",
-                exec = "<CR>",
+            code_action = {
+                keys = {
+                    quit = "q",
+                    exec = "<CR>",
+                },
             },
-            definition_preview_icon = "  ",
-            border_style = "single",
-            rename_prompt_prefix = "➤",
-            server_filetype_map = {},
-            diagnostic_prefix_format = "%d. ",
+            rename = {
+                keys = {
+                    quit = "<C-c>",
+                    exec = "<CR>",
+                },
+            },
         })
     end,
     dependencies = {
@@ -391,9 +387,7 @@ m = {
     fidget,
     illuminate,
 }
-vim.cmd([[nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>]])
-vim.cmd([[nnoremap <silent> <C-d> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>]])
-vim.cmd([[tnoremap <silent> <M-f> <C-\><C-n>:Lspsaga close_floaterm<CR>]])
+vim.cmd([[tnoremap <silent> <M-f> <C-\><C-n>:Lspsaga term_toggle<CR>]])
 
 vim.api.nvim_create_autocmd("LspAttach", {
     desc = "Fix startup error by disabling semantic tokens for omnisharp",
