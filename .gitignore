@@ -62,3 +62,6 @@
 
 # alacritty
 !/.alacritty.yml
+
+# Brew
+!/.Brewfile

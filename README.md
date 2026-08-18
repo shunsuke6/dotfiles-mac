@@ -111,10 +111,10 @@ vi +PackerSync
 If PackerSync UI freezes,look
 [this wiki](https://github.com/shunsuke6/dotfiles-mac/wiki/Packer-freezes-on-Mac-OS)
 
-## app-Install
+## applications install(brew)
 
 ```bash
-./app-install.sh
+brew bundle --global
 ```
 
 Install the apps I use with Homebrew.

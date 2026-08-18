@@ -56,6 +56,7 @@ create_dotfile_links() {
 
 dotfiles_or_dirs=(
 	.alacritty.yml
+	.Brewfile
 	.zprofile
 	.zshrc
 	.zshrc.lazy
