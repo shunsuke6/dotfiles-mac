@@ -63,9 +63,6 @@ dotfiles_or_dirs=(
 	.zshenv
 	.tmux.conf
 	.gitconfig
-	.default-gems
-	.default-golang-pkgs
-	.default-npm-packages
 	.config/mise
 	.config/nvim/init.lua
 	.config/nvim/lua

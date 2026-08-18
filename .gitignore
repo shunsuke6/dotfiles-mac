@@ -39,10 +39,6 @@
 !/.tmux.conf
 ## git
 !/.gitconfig
-## asdf
-!/.default-gems
-!/.default-golang-pkgs
-!/.default-npm-packages
 
 # config dir
 !/.config/
