@@ -2,12 +2,11 @@ local m = {}
 
 local treesitter = {
     "nvim-treesitter/nvim-treesitter",
-    build = function()
-        require("nvim-treesitter.install").update({ with_sync = true })
-    end,
+    build = ":TSUpdateSync",
     config = function()
         require("nvim-treesitter.configs").setup({
             ensure_installed = "all",
+            ignore_install = { "ipkg" },
             sync_install = true,
             highlight = {
                 enable = true,
