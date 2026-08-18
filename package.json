@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "bash-language-server": "^3.1.0",
-    "npm-check-updates": "^16.3.11",
+    "npm-check-updates": "^23.0.2",
     "prettier": "2.7.1"
   },
   "dependencies": {
