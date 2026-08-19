@@ -54,10 +54,6 @@ export VISUAL=nvim
 export BEMENU_BACKEND=curses
 export BEMENU_OPTS='--scrollbar=autohide'
 
-# poetry
-[[ ! -d $HOME/bin/update-poetry.sh ]] || \
-    source "$HOME/bin/update-poetry.sh"
-
 # rustup
 if [[ ! -d $HOME/.cargo ]]; then
     print -P "%F{33} %F{220}Installing %F{33}rustup%F{220} rust tool manager…%f"
