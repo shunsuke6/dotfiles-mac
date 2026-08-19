@@ -16,18 +16,20 @@ alias gd='git diff | git-split-diffs --color | less -RFX'
 ########################################
 # PATH
 
+# mise-managed and user-level tools
+export PATH="$HOME/.dotnet/tools:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+typeset -U PATH
+
 # FLUTTER
-export FLUTTER_ROOT="$(mise where flutter)"
+if (( $+commands[mise] )); then
+    flutter_root="$(mise where flutter 2>/dev/null)" && export FLUTTER_ROOT="$flutter_root"
+    unset flutter_root
+fi
 # Java
 export JAVA_WORKSPACE="$HOME/.workspace"
 # llvm
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-# mise-managed tools
-export PATH="$HOME/.dotnet/tools:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-# user
-export PATH="$HOME/bin:$PATH"
-
-typeset -U PATH

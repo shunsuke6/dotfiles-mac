@@ -149,8 +149,9 @@ setopt extended_glob
 # fi
 
 ########################################
-# lazy alias path
-zinit lucid wait="0" atinit='source $HOME/.zshrc.local;source $HOME/.zshrc.lazy' for zdharma-continuum/null
+# local settings, aliases, and PATH
+[[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+[[ -r "$HOME/.zshrc.lazy" ]] && source "$HOME/.zshrc.lazy"
 
 ########################################
 # bindkey Mac
