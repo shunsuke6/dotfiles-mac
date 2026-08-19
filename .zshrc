@@ -7,9 +7,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-
 #######################################
 # Plugins
 # brew
@@ -175,9 +172,6 @@ bindkey "[Z" reverse-menu-complete
 ########################################
 #GPG
 export GPG_TTY="$TTY"
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(~/.local/bin/mise activate zsh)"
