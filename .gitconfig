@@ -1,15 +1,113 @@
+# Identity and authentication
 [user]
-    email = snsk.syk.gtobzz@gmail.com
     name = shunsuke6
+    email = snsk.syk.gtobzz@gmail.com
     signingkey = 253A01FBA351F3EF
 
 [commit]
     gpgsign = true
 
-[include]
-    path = ~/.gitconfig.local
+[credential]
+    helper = osxkeychain
+
+
+# General behavior
 [core]
     excludesfile = ~/.config/.gitignore_global
+    editor = nvim
+    pager = delta
 
 [init]
     defaultBranch = main
+
+[color]
+    ui = auto
+
+[column]
+    ui = auto
+
+
+# Diff and display
+[diff]
+    algorithm = histogram
+    colorMoved = default
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    dark = true
+    side-by-side = true
+    line-numbers = true
+
+
+# Branches and remotes
+[branch]
+    sort = -committerdate
+
+[fetch]
+    prune = true
+
+[push]
+    autoSetupRemote = true
+
+
+# Merge and history rewriting
+[merge]
+    tool = vimdiff
+    conflictstyle = zdiff3
+
+[mergetool]
+    prompt = false
+    keepBackup = false
+
+[rerere]
+    enabled = true
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+
+
+# Git LFS
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+
+# Aliases
+[alias]
+    # Inspect
+    s = status
+    ss = status -s
+    d = diff
+    l = log --oneline -10
+    ll = log --oneline -20
+    lll = log --oneline -30
+    last = log -1 HEAD
+    root = rev-parse --show-toplevel
+
+    # Branches
+    br = branch
+    co = checkout
+    sw = switch
+
+    # Changes
+    ad = add -A
+    unstage = restore --staged
+    c = commit
+    cm = commit -m
+    amend = commit --amend
+
+    # Remotes
+    f = fetch
+    p = pull
+    ph = push
+
+
+# Machine-specific overrides
+[include]
+    path = ~/.gitconfig.local
