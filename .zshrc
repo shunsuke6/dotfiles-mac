@@ -81,17 +81,20 @@ if [[ ! -f $HOME/.zfunc/_uv ]] && command -v uv >/dev/null 2>&1; then
         print -P "%F{160} Installation failed.%f%b"
     unset uv_completion
 fi
-if [[ ! -f $HOME/.zfunc/_rustup ]]; then
+if (( $+commands[rustup] )) && [[ ! -s "$HOME/.zfunc/_rustup" ]]; then
     print -P "%F{33} %F{220}Installing %F{33}rustup%F{220} completions…%f"
-    rustup completions zsh > ~/.zfunc/_rustup && \
+    rustup completions zsh >| "$HOME/.zfunc/_rustup" && \
         print -P "%F{33} %F{34}Installation successful.%f%b" || \
         print -P "%F{160} Installation failed.%f%b"
 fi
-if [[ ! -f $HOME/.zfunc/_cargo ]]; then
+if (( $+commands[rustup] )) && { [[ -L "$HOME/.zfunc/_cargo" ]] || [[ ! -s "$HOME/.zfunc/_cargo" ]]; }; then
     print -P "%F{33} %F{220}Installing %F{33}cargo%F{220} completions…%f"
-    ln -sf ~/.rustup/toolchains/stable-aarch64-apple-darwin/share/zsh/site-functions/_cargo ~/.zfunc/_cargo && \
+    cargo_completion=$(rustup completions zsh cargo) && \
+        command rm -f -- "$HOME/.zfunc/_cargo" && \
+        print -r -- "$cargo_completion" >| "$HOME/.zfunc/_cargo" && \
         print -P "%F{33} %F{34}Installation successful.%f%b" || \
         print -P "%F{160} Installation failed.%f%b"
+    unset cargo_completion
 fi
 fpath+=~/.zfunc
 autoload -Uz compinit
@@ -158,7 +161,11 @@ bindkey "[Z" reverse-menu-complete
 
 ########################################
 #GPG
-export GPG_TTY="$TTY"
+if [[ -n "${TTY:-}" ]]; then
+    export GPG_TTY="$TTY"
+elif [[ -t 0 ]]; then
+    export GPG_TTY="$(tty)"
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if [[ -x "$HOME/.local/bin/mise" ]]; then
