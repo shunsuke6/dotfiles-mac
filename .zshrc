@@ -173,4 +173,6 @@ bindkey "[Z" reverse-menu-complete
 export GPG_TTY="$TTY"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(~/.local/bin/mise activate zsh)"
+if [[ -x "$HOME/.local/bin/mise" ]]; then
+    eval "$("$HOME/.local/bin/mise" activate zsh)"
+fi
