@@ -22,7 +22,7 @@ We will fix them as we go along.
 - zsh
 - zinit
 - Alacritty
-- asdf
+- mise
 
 ## how to install
 
@@ -32,7 +32,14 @@ We will fix them as we go along.
 - curl
 - wget
 - homebrew
+- mise (installed with the official installer)
 - fig(Recommend)
+
+### install mise
+
+```bash
+curl https://mise.run | sh
+```
 
 ### git clone
 
@@ -91,7 +98,7 @@ Install zsh plugins and some packages from github or script.
 exec zsh
 ```
 
-install asdf tools, dotnet tools, pyenv, poetry, ghcup, rustup,
+Update mise tools, ghcup, rustup, VS Code debug adapters, and language servers.
 
 ```bash
 ~/bin/update-devtools.sh

@@ -371,7 +371,8 @@ local dap_telescope = {
 local dap_python = {
     "mfussenegger/nvim-dap-python",
     config = function()
-        local dap_python_adapter_path = require("os").getenv("HOME") .. "/.asdf/shims/python"
+        local debugpy_dir = vim.trim(vim.fn.system({ "mise", "where", "pipx:debugpy" }))
+        local dap_python_adapter_path = debugpy_dir .. "/debugpy/bin/python"
         local dap_python = require("dap-python")
         local dap_python_opts = {
             include_configs = true,
@@ -379,7 +380,7 @@ local dap_python = {
             pythonPath = function()
                 local cwd = vim.fn.getcwd()
                 if vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
-                    -- poetry
+                    -- uv
                     return cwd .. "/.venv/bin/python"
                 else
                     return dap_python_adapter_path

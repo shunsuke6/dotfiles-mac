@@ -2,8 +2,6 @@
 brew "ant"
 # Mozilla CA certificate store
 brew "ca-certificates"
-# Extendable version manager with support for Ruby, Node.js, Erlang & more
-brew "asdf"
 # Code searching, linting, rewriting
 brew "ast-grep"
 # CLI tool to build, test, debug, and deploy Serverless applications using AWS SAM

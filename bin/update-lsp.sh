@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-update-lsp-jdtls.sh &&
-  update-lsp-lombok.sh
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+
+"${script_dir}/update-lsp-jdtls.sh"
+"${script_dir}/update-lsp-lombok.sh"

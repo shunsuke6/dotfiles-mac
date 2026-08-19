@@ -68,23 +68,17 @@ dotfiles_or_dirs=(
 	.config/nvim/lua
 	.config/nvim/ftplugin
 	.config/ranger
-	bin/update-asdf-plugins.sh
-	bin/update-asdf-self.sh
-	bin/update-asdf.sh
 	bin/update-devtools.sh
-	bin/update-dotnet-core-tools.sh
 	bin/update-ghcup.sh
 	bin/update-java-debug.sh
 	bin/update-kotlin-debug-adapter.sh
 	bin/update-lsp-jdtls.sh
 	bin/update-lsp-lombok.sh
 	bin/update-lsp.sh
-	bin/update-poetry.sh
+	bin/update-mise.sh
 	bin/update-rustup.sh
-	bin/update-vscode-chrome-debug.sh
 	bin/update-vscode-firefox-debug.sh
 	bin/update-vscode-java-test.sh
-	bin/update-vscode-node-debug2.sh
 	bin/update-vscode-php-debug.sh
 	bin/update-vscode.sh
 	Gemfile

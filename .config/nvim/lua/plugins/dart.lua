@@ -17,7 +17,7 @@ m = {
                 enabled = true,
                 run_via_dap = true,
             },
-            flutter_lookup_cmd = "asdf where flutter",
+            flutter_lookup_cmd = "mise where flutter",
             widget_guides = {
                 enabled = true,
             },

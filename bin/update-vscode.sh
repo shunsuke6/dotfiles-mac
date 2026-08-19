@@ -1,9 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-update-vscode-node-debug2.sh &&
-  update-vscode-chrome-debug.sh &&
-  update-vscode-firefox-debug.sh &&
-  update-vscode-php-debug.sh &&
-  update-java-debug.sh &&
-  update-vscode-java-test.sh &&
-  update-kotlin-debug-adapter.sh
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+
+"${script_dir}/update-vscode-firefox-debug.sh"
+"${script_dir}/update-vscode-php-debug.sh"
+"${script_dir}/update-java-debug.sh"
+"${script_dir}/update-vscode-java-test.sh"
+"${script_dir}/update-kotlin-debug-adapter.sh"
