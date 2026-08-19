@@ -54,6 +54,24 @@ create_dotfile_links() {
 	done
 }
 
+install_zinit() {
+	local zinit_dir="${HOME}/.local/share/zinit"
+	local zinit_home="${zinit_dir}/zinit.git"
+
+	if [[ -r "${zinit_home}/zinit.zsh" ]]; then
+		return
+	fi
+
+	if [[ -e "${zinit_home}" ]]; then
+		echo "zinit installation is incomplete: ${zinit_home}" >&2
+		return 1
+	fi
+
+	mkdir -p "${zinit_dir}"
+	chmod g-rwX "${zinit_dir}"
+	git clone https://github.com/zdharma-continuum/zinit "${zinit_home}"
+}
+
 dotfiles_or_dirs=(
 	.alacritty.yml
 	.Brewfile
@@ -85,3 +103,4 @@ dotfiles_or_dirs=(
 )
 
 create_dotfile_links "${dotfiles_or_dirs[@]}"
+install_zinit
