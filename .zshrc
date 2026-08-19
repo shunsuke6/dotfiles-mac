@@ -83,14 +83,15 @@ zstyle ':zle:*' word-style unspecified
 
 ########################################
 # Completions
-# asdf
 # zfunc
 [[ -d $HOME/.zfunc ]] || mkdir ~/.zfunc
-if [[ ! -f $HOME/.zfunc/_poetry ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}poetry%F{220} completions…%f"
-    poetry completions zsh > ~/.zfunc/_poetry && \
+if [[ ! -f $HOME/.zfunc/_uv ]] && command -v uv >/dev/null 2>&1; then
+    print -P "%F{33} %F{220}Installing %F{33}uv%F{220} completions…%f"
+    uv_completion=$(uv generate-shell-completion zsh) && \
+        print -r -- "$uv_completion" > ~/.zfunc/_uv && \
         print -P "%F{33} %F{34}Installation successful.%f%b" || \
         print -P "%F{160} Installation failed.%f%b"
+    unset uv_completion
 fi
 if [[ ! -f $HOME/.zfunc/_rustup ]]; then
     print -P "%F{33} %F{220}Installing %F{33}rustup%F{220} completions…%f"
@@ -105,6 +106,8 @@ if [[ ! -f $HOME/.zfunc/_cargo ]]; then
         print -P "%F{160} Installation failed.%f%b"
 fi
 fpath+=~/.zfunc
+autoload -Uz compinit
+compinit
 
 # ignore case
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
