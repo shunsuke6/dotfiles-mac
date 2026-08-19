@@ -52,16 +52,6 @@ export VISUAL=nvim
 export BEMENU_BACKEND=curses
 export BEMENU_OPTS='--scrollbar=autohide'
 
-# rustup
-if [[ ! -d $HOME/.cargo ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}rustup%F{220} rust tool manager…%f"
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} Installation failed.%f%b"
-fi
-[[ ! -f $HOME/.cargo/env ]] || source "$HOME/.cargo/env"
-
-
 #######################################
 # Generics
 # colors

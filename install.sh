@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# nounset, errexit
-set -ue
+# nounset, errexit, pipefail
+set -euo pipefail
 
 create_backup_dir() {
 	local backupdir="${HOME}/.dotbackup"
@@ -72,6 +72,14 @@ install_zinit() {
 	git clone https://github.com/zdharma-continuum/zinit "${zinit_home}"
 }
 
+install_rustup() {
+	if [[ -r "${HOME}/.cargo/env" ]]; then
+		return
+	fi
+
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+}
+
 dotfiles_or_dirs=(
 	.alacritty.yml
 	.Brewfile
@@ -104,3 +112,4 @@ dotfiles_or_dirs=(
 
 create_dotfile_links "${dotfiles_or_dirs[@]}"
 install_zinit
+install_rustup
