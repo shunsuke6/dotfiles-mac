@@ -25,11 +25,11 @@ if [[ -r "$zinit_home/zinit.zsh" ]]; then
     zinit light zdharma-continuum/zinit-annex-patch-dl
     zinit light zdharma-continuum/zinit-annex-rust
     zinit light zsh-users/zsh-completions
-    zinit light zsh-users/zsh-syntax-highlighting
     zinit light zsh-users/zsh-autosuggestions
     zinit light zsh-users/zsh-history-substring-search
     zinit light zdharma/history-search-multi-word
     zinit ice depth=1; zinit light romkatv/powerlevel10k
+    zinit light zsh-users/zsh-syntax-highlighting
 
     # load powerlevel10k
     [[ ! -f $HOME/.p10k.zsh ]] || source ~/.p10k.zsh
