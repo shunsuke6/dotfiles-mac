@@ -44,7 +44,7 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # Environment variables
 # basic
 export LANG=ja_JP.UTF-8
-export LESSOPEN='| /usr/bin/src-hilite-lesspipe.sh %s'
+export LESSOPEN='| src-hilite-lesspipe.sh %s'
 export LESS='-R'
 export PAGER=less
 export EDITOR=nvim
