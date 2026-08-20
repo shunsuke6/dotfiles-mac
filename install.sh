@@ -81,7 +81,6 @@ install_rustup() {
 }
 
 dotfiles_or_dirs=(
-	.alacritty.yml
 	.Brewfile
 	.zprofile
 	.zshrc
@@ -94,6 +93,7 @@ dotfiles_or_dirs=(
 	.config/nvim/lua
 	.config/nvim/ftplugin
 	.config/ranger
+	.config/alacritty/alacritty.toml
 	bin/update-devtools.sh
 	bin/update-ghcup.sh
 	bin/update-java-debug.sh
